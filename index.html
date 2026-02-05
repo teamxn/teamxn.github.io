@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuvo | Anime Style Portfolio</title>
+    <title>Shuvo | Ultimate Anime Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
     
     <style>
         :root {
             --anime-pink: #ff0055;
             --anime-blue: #00e5ff;
             --anime-yellow: #ffe600;
-            --bg-dark: #0a001a; /* Deep purple/black */
-            --card-bg: rgba(20, 0, 40, 0.8);
+            --bg-dark: #0a001a;
+            --card-bg: rgba(20, 0, 40, 0.85);
         }
 
         body {
@@ -26,24 +27,87 @@
             min-height: 100vh;
         }
 
-        /* Anime Speed Lines Background */
-        .anime-bg {
+        /* --- NEW: Shooting Stars Animation --- */
+        .shooting-stars-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                repeating-linear-gradient(90deg, transparent 0, transparent 50px, rgba(0, 229, 255, 0.05) 50px, rgba(0, 229, 255, 0.05) 55px),
-                radial-gradient(circle at center, rgba(255,0,85,0.2) 0%, rgba(10,0,26,1) 70%);
+            pointer-events: none;
             z-index: -2;
+            overflow: hidden;
+        }
+
+        .shooting-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px var(--anime-blue);
+            animation: animate 3s linear infinite;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--anime-blue), transparent);
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(315deg) translateX(0);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(315deg) translateX(-1500px);
+                opacity: 0;
+            }
+        }
+        /* Different timings for stars */
+        .shooting-star:nth-child(1) { top: 0; right: 0; left: initial; animation-delay: 0s; animation-duration: 1s; }
+        .shooting-star:nth-child(2) { top: 0; right: 80px; left: initial; animation-delay: 0.2s; animation-duration: 3s; }
+        .shooting-star:nth-child(3) { top: 80px; right: 0px; left: initial; animation-delay: 0.4s; animation-duration: 2s; }
+        .shooting-star:nth-child(4) { top: 0; right: 180px; left: initial; animation-delay: 0.6s; animation-duration: 1.5s; }
+        .shooting-star:nth-child(5) { top: 0; right: 400px; left: initial; animation-delay: 0.8s; animation-duration: 2.5s; }
+        .shooting-star:nth-child(6) { top: 0; right: 600px; left: initial; animation-delay: 1s; animation-duration: 3s; }
+        .shooting-star:nth-child(7) { top: 300px; right: 0px; left: initial; animation-delay: 1.2s; animation-duration: 1.75s; }
+        .shooting-star:nth-child(8) { top: 0px; right: 700px; left: initial; animation-delay: 1.4s; animation-duration: 1.25s; }
+
+
+        /* Base Static Background */
+        .anime-bg-static {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(255,0,85,0.15) 0%, rgba(10,0,26,1) 80%);
+            z-index: -3;
         }
         
-        /* Dynamic overlay pattern (Halftone dots) */
+        /* Dynamic overlay pattern */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(var(--anime-blue) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.1;
+            background-size: 30px 30px;
+            opacity: 0.15;
             z-index: -1;
+        }
+
+        /* --- Particle Container --- */
+        #tsparticles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind content, in front of static bg */
+            top: 0;
+            left: 0;
         }
 
         .container {
@@ -74,7 +138,7 @@
             border-radius: 50%;
             border: 4px solid var(--anime-pink);
             box-shadow: 0 0 20px var(--anime-pink), inset 0 0 20px var(--anime-blue);
-            animation: pulseAnime 2s infinite;
+            animation: pulseAnime 1.5s infinite alternate;
         }
 
         .profile-img {
@@ -90,8 +154,9 @@
         }
 
         .profile-container:hover .profile-img {
-            transform: scale(1.2);
-            filter: contrast(1.2);
+            transform: scale(1.2) rotate(2deg);
+            filter: contrast(1.2) brightness(1.1);
+            box-shadow: 0 0 30px var(--anime-yellow);
         }
         
         /* Name Header - Manga Style */
@@ -102,51 +167,45 @@
             font-weight: 900;
             text-transform: uppercase;
             color: #fff;
-            text-shadow: 3px 3px 0px var(--anime-pink), -3px -3px 0px var(--anime-blue);
+            text-shadow: 4px 4px 0px var(--anime-pink), -4px -4px 0px var(--anime-blue);
             font-style: italic;
             letter-spacing: 2px;
+            animation: glitchText 3s infinite;
         }
 
         .subtitle {
             font-family: 'Share Tech Mono', monospace;
             font-size: 1.2rem;
             color: var(--anime-yellow);
-            background: rgba(255, 0, 85, 0.2);
+            background: rgba(255, 0, 85, 0.3);
             padding: 5px 15px;
-            transform: skewX(-15deg); /* Angled text box */
+            transform: skewX(-15deg);
             display: inline-block;
             margin-top: 15px;
             border: 2px solid var(--anime-blue);
+            box-shadow: 5px 5px 0 rgba(0, 229, 255, 0.5);
         }
 
-        /* Anime Card Design (Manga Panels) */
+        /* Anime Card Design */
         .card {
             background: var(--card-bg);
             border: 3px solid var(--anime-blue);
             padding: 30px;
             margin-bottom: 40px;
             position: relative;
-            /* Angled/Skewed Manga Panel Look */
             clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
         }
 
         .card:hover {
-            transform: scale(1.03) skewX(-2deg);
+            transform: scale(1.03) skewX(-2deg) translateY(-5px);
             border-color: var(--anime-pink);
-            box-shadow: 0 0 30px rgba(255, 0, 85, 0.4);
+            box-shadow: 0 0 40px rgba(255, 0, 85, 0.6), inset 0 0 20px rgba(255,0,85,0.2);
         }
         
-        /* Decorative corner elements */
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 30px; height: 30px;
-            border-top: 4px solid var(--anime-yellow); border-left: 4px solid var(--anime-yellow);
-        }
-        .card::after {
-            content: ''; position: absolute; bottom: 0; right: 0; width: 30px; height: 30px;
-            border-bottom: 4px solid var(--anime-yellow); border-right: 4px solid var(--anime-yellow);
-        }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 30px; height: 30px; border-top: 4px solid var(--anime-yellow); border-left: 4px solid var(--anime-yellow); }
+        .card::after { content: ''; position: absolute; bottom: 0; right: 0; width: 30px; height: 30px; border-bottom: 4px solid var(--anime-yellow); border-right: 4px solid var(--anime-yellow); }
 
         h2 {
             color: var(--anime-yellow);
@@ -160,29 +219,23 @@
             align-items: center;
         }
         
-        /* Japanese Accent Text */
-        h2::after {
-            content: attr(data-jp);
-            font-size: 1rem;
-            color: var(--anime-blue);
-            margin-left: 15px;
-            opacity: 0.7;
-            font-weight: normal;
-        }
+        h2::after { content: attr(data-jp); font-size: 1rem; color: var(--anime-blue); margin-left: 15px; opacity: 0.8; font-weight: normal; }
 
         p { color: #e0e6ed; font-size: 1.1rem; line-height: 1.8; }
         .icon { margin-right: 15px; font-size: 2rem; filter: drop-shadow(0 0 5px var(--anime-pink)); }
-        strong { color: var(--anime-blue); }
+        strong { color: var(--anime-blue); font-weight: bold; text-shadow: 0 0 5px var(--anime-blue); }
 
         ul { list-style: none; padding: 0; }
         li { 
             padding: 15px 20px; 
             border-left: 5px solid var(--anime-pink); 
-            background: linear-gradient(90deg, rgba(255, 0, 85, 0.1), transparent);
+            background: linear-gradient(90deg, rgba(255, 0, 85, 0.15), transparent);
             margin-bottom: 15px;
             color: #fff;
-            transform: skewX(-5deg); /* Slight angle for list items */
+            transform: skewX(-5deg);
+            transition: 0.3s;
         }
+        li:hover { background: linear-gradient(90deg, rgba(0, 229, 255, 0.15), transparent); border-left-color: var(--anime-blue); transform: skewX(-5deg) translateX(10px); }
 
         /* Power-up Contact Button */
         .contact-btn-container { text-align: center; margin-top: 20px; transform: skewX(5deg); }
@@ -200,13 +253,24 @@
             clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
             transition: all 0.3s;
             box-shadow: 5px 5px 0px var(--anime-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
         }
 
         .contact-btn:hover {
             transform: translate(-5px, -5px);
-            box-shadow: 10px 10px 0px var(--anime-blue);
-            filter: brightness(1.1);
+            box-shadow: 10px 10px 0px var(--anime-blue), 0 0 20px var(--anime-pink);
         }
+        .contact-btn:hover::before { left: 100%; }
 
         footer {
             text-align: center; margin-top: 60px; color: var(--anime-blue);
@@ -214,14 +278,22 @@
         }
 
         @keyframes pulseAnime {
-            0% { box-shadow: 0 0 20px var(--anime-pink), inset 0 0 20px var(--anime-blue); }
-            50% { box-shadow: 0 0 40px var(--anime-pink), 0 0 10px var(--anime-yellow), inset 0 0 40px var(--anime-blue); }
-            100% { box-shadow: 0 0 20px var(--anime-pink), inset 0 0 20px var(--anime-blue); }
+            0% { box-shadow: 0 0 20px var(--anime-pink), inset 0 0 20px var(--anime-blue); opacity: 0.8; }
+            100% { box-shadow: 0 0 50px var(--anime-pink), 0 0 30px var(--anime-yellow), inset 0 0 50px var(--anime-blue); opacity: 1; }
+        }
+        
+        @keyframes glitchText {
+            0% { text-shadow: 4px 4px 0px var(--anime-pink), -4px -4px 0px var(--anime-blue); }
+            20% { text-shadow: 4px -4px 0px var(--anime-pink), -4px 4px 0px var(--anime-blue); }
+            40% { text-shadow: -4px 4px 0px var(--anime-pink), 4px -4px 0px var(--anime-blue); }
+            60% { text-shadow: -4px -4px 0px var(--anime-pink), 4px 4px 0px var(--anime-blue); }
+            80% { text-shadow: 2px 2px 0px var(--anime-pink), -2px -2px 0px var(--anime-blue); }
+            100% { text-shadow: 4px 4px 0px var(--anime-pink), -4px -4px 0px var(--anime-blue); }
         }
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .card { clip-path: none; border-radius: 10px; } /* Remove heavy skew on mobile for readability */
+            .card { clip-path: none; border-radius: 10px; }
             .subtitle, .contact-btn { transform: none; clip-path: none; }
             .profile-container { transform: scale(0.9); }
         }
@@ -229,8 +301,21 @@
 </head>
 <body>
 
-    <div class="anime-bg"></div>
+    <div class="anime-bg-static"></div>
     <div class="bg-overlay"></div>
+    
+    <div class="shooting-stars-container">
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star"></span>
+    </div>
+
+    <div id="tsparticles"></div>
 
     <div class="container">
         <header class="animate__animated animate__fadeInDown">
@@ -284,6 +369,40 @@
             <p>[ SYSTEM ONLINE ] © 2026 | SHUVO'S PORTFOLIO</p>
         </footer>
     </div>
+
+    <script>
+        tsparticles.load("tsparticles", {
+            fullScreen: { enable: false },
+            background: { color: { value: "transparent" } },
+            fpsLimit: 60,
+            interactivity: {
+                events: {
+                    onHover: { enable: true, mode: "repulse" }, // Particles run away from mouse
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 }
+                }
+            },
+            particles: {
+                color: { value: ["#ff0055", "#00e5ff", "#ffe600"] }, // Anime colors
+                links: { enable: false },
+                move: {
+                    enable: true,
+                    speed: 3, // Fast movement
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    outModes: { default: "out" }
+                },
+                number: { value: 80, density: { enable: true, area: 800 } },
+                opacity: { value: 0.7, random: true },
+                shape: { type: "circle" },
+                size: { value: { min: 2, max: 5 }, random: true }
+            },
+            detectRetina: true
+        });
+    </script>
 
 </body>
 </html>
