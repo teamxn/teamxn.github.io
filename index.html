@@ -3,55 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuvo | Modern Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Shuvo | Pro Gamer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-blue: #38bdf8;
-            --accent-purple: #c084fc;
-            --glass-bg: rgba(30, 41, 59, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-color: #0b0c15;
+            --card-bg: #151621;
+            --text-main: #e0e6ed;
+            --accent: #00f3ff; /* Cyan */
+            --accent-2: #bc13fe; /* Purple */
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif; /* Techy body font */
             overflow-x: hidden;
             min-height: 100vh;
-        }
-
-        /* --- Animated Background Orbs (CSS Only - Super Fast) --- */
-        .background-blobs {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: var(--bg-dark);
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: floatBlob 10s infinite alternate;
-        }
-
-        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #4c1d95; animation-duration: 12s; }
-        .blob-2 { bottom: -10%; right: -10%; width: 400px; height: 400px; background: #0c4a6e; animation-duration: 15s; }
-        .blob-3 { top: 40%; left: 40%; width: 300px; height: 300px; background: #be185d; opacity: 0.2; animation-duration: 18s; }
-
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(30px, 50px); }
+            /* Gaming Grid Background */
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         .container {
@@ -62,7 +39,7 @@
             z-index: 1;
         }
 
-        /* --- Header --- */
+        /* --- Header: Hexagon Profile & RGB Name --- */
         header { text-align: center; margin-bottom: 70px; }
 
         .profile-wrapper {
@@ -70,193 +47,231 @@
             width: 220px;
             height: 220px;
             margin: 0 auto 30px;
-            border-radius: 50%;
-            padding: 5px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+            /* RGB Spinning Border Container */
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            animation: glowing-rgb 20s linear infinite;
+            /* Hexagon Clip Path */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            padding: 4px; /* Border thickness */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img-inner {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
             object-position: center 15%; /* Face focus */
-            border: 4px solid var(--bg-dark); /* Keeps it clean */
-            transform: scale(1);
-            transition: transform 0.4s ease;
-        }
-
-        .profile-wrapper:hover .profile-img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         h1 {
+            font-family: 'Orbitron', sans-serif; /* Sci-fi Header Font */
             font-size: 3.5rem;
             margin: 0;
-            font-weight: 700;
-            background: linear-gradient(to right, #fff, #94a3b8);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Gradient Text */
+            background: linear-gradient(to right, #00f3ff, #bc13fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-            margin-top: 10px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
             display: inline-block;
-            background: rgba(56, 189, 248, 0.1);
-            padding: 5px 15px;
-            border-radius: 20px;
+            padding: 5px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent);
+            border-right: 3px solid var(--accent-2);
+            transform: skew(-10deg); /* Angled "Speed" Look */
         }
 
-        /* --- Glassmorphism Cards --- */
+        /* --- Gamer Cards --- */
         .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 35px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             margin-bottom: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            /* Angled Corners (Gaming HUD style) */
+            clip-path: polygon(
+                20px 0, 100% 0, 
+                100% calc(100% - 20px), calc(100% - 20px) 100%, 
+                0 100%, 0 20px
+            );
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
+        /* Card Hover Effect: Glow */
         .card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            border-top: 1px solid var(--accent);
+        }
+
+        /* Decorative RGB Line on top of cards */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            opacity: 0.7;
         }
 
         h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
             font-size: 1.8rem;
             margin-top: 0;
-            margin-bottom: 20px;
-            color: var(--text-primary);
             display: flex;
             align-items: center;
+            text-transform: uppercase;
         }
 
         .icon {
-            font-size: 1.6rem;
             margin-right: 15px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent);
+            font-size: 1.5rem;
         }
 
         p {
-            line-height: 1.8;
-            color: var(--text-secondary);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #aebbc9;
         }
 
         /* List Styling */
         ul { list-style: none; padding: 0; }
         li {
-            padding: 15px;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border-left: 3px solid var(--accent-purple);
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #333;
             transition: 0.3s;
-            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
         }
         
         li:hover {
-            background: rgba(255, 255, 255, 0.08);
+            border-left-color: var(--accent-2);
+            background: rgba(188, 19, 254, 0.1);
             padding-left: 20px;
         }
 
-        strong { color: var(--text-primary); font-weight: 600; }
+        strong { color: var(--accent); font-weight: 700; margin-right: 5px;}
 
-        /* Modern Gradient Button */
+        /* --- "Press Start" Button --- */
         .contact-btn {
             display: inline-block;
             margin-top: 15px;
             padding: 15px 40px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-            color: white;
+            background: transparent;
+            color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.3);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            transition: 0.3s;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(192, 132, 252, 0.5);
-            filter: brightness(1.1);
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 30px var(--accent);
+            text-shadow: none;
         }
 
         footer {
             text-align: center;
-            margin-top: 80px;
-            color: var(--text-secondary);
+            margin-top: 60px;
             font-size: 0.9rem;
-            opacity: 0.7;
+            color: #555;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
         }
 
-        /* Mobile Adjustments */
+        /* --- Animations --- */
+        @keyframes glowing-rgb {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .container { padding: 40px 15px; }
-            .card { padding: 25px; }
+            .profile-wrapper { width: 180px; height: 180px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
     <div class="container">
         
         <header class="animate__animated animate__fadeInDown">
             <div class="profile-wrapper">
-                <img src="me.png" alt="Shuvo" class="profile-img">
+                <div class="profile-img-inner">
+                    <img src="me.png" alt="Shuvo" class="profile-img">
+                </div>
             </div>
             
-            <h1>Hello, I'm Shuvo</h1>
-            <div class="subtitle">Bridging Business Acumen with Technical Innovation</div>
+            <h1>I'm Shuvo</h1>
+            <div class="subtitle">Bridging Business & Tech</div>
         </header>
 
         <main>
             <section class="card animate__animated animate__fadeInUp">
-                <h2><span class="icon">👤</span>About Me</h2>
+                <h2><span class="icon">🎮</span> About Me</h2>
                 <p>As a final-year BBA student in the Department of Management at Rajshahi College, I possess a unique perspective that blends business strategy with technical proficiency. While my academic foundation is rooted in management, my true passion lies in exploring the intricacies of the digital world—from network protocols to AI development. I believe that the synergy between managerial skills and technical expertise is what sets me apart in today's dynamic landscape.</p>
             </section>
 
-            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-                <h2><span class="icon">🚀</span>Passion & Skills</h2>
+            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <h2><span class="icon">⚡</span> Passion & Skills</h2>
                 <ul>
-                    <li><strong>Academic Background:</strong> BBA (Final Year), Rajshahi College. Focused on Management and Business Strategy.</li>
-                    <li><strong>Tech Enthusiast:</strong> Deeply interested in Network Configuration, Web Development, and Device Customization. Currently expanding my expertise in Artificial Intelligence.</li>
-                    <li><strong>Dedicated Gamer:</strong> A competitive gamer with a focus on strategy and rapid decision-making. My experience in high-intensity gaming environments has honed my patience and focus.</li>
+                    <li><strong>Academic:</strong> BBA (Final Year), Rajshahi College. Focused on Management and Business Strategy.</li>
+                    <li><strong>Tech:</strong> Deeply interested in Network Configuration, Web Development, and Device Customization. Currently expanding my expertise in AI.</li>
+                    <li><strong>Gaming:</strong> A competitive gamer with a focus on strategy and rapid decision-making. My experience in high-intensity gaming environments has honed my patience and focus.</li>
                 </ul>
             </section>
 
-            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                <h2><span class="icon">❤️</span>The Human Side</h2>
+            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <h2><span class="icon">❤️</span> The Human Side</h2>
                 <p>Beyond the screen, I am a compassionate individual who values empathy and community. I am deeply committed to animal welfare, specifically caring for street animals, which brings a sense of balance and purpose to my life.</p>
             </section>
 
-            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-                <h2><span class="icon">🌍</span>Future Vision</h2>
+            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                <h2><span class="icon">🗺️</span> Future Vision</h2>
                 <p>My goal is to explore the diverse landscapes of Bangladesh. I aspire to travel across the country, gaining new experiences and cultural insights that will broaden my horizons.</p>
             </section>
 
-            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.4s; text-align: center;">
-                <h2><span class="icon">✉️</span>Let's Connect</h2>
-                <p>Open for opportunities, collaborations, or tech conversations.</p>
+            <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.8s; text-align: center;">
+                <h2><span class="icon">📩</span> Contact</h2>
+                <p>Ready to start the game? Let's connect.</p>
                 <div>
                     <a href="mailto:mehedihasanshuvo.cv@gmail.com" class="contact-btn">
                         Email Me
@@ -266,7 +281,7 @@
         </main>
 
         <footer>
-            <p>© 2026 Shuvo | Designed with Vision</p>
+            <p>GG WP © 2026 Shuvo</p>
         </footer>
     </div>
 
