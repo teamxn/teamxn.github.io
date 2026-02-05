@@ -3,39 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuvo | Professional Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>root@shuvo:~$ SYSTEM_ACCESS</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root {
-            --primary-color: #66fcf1;
-            --secondary-color: #45a29e;
-            --bg-color: #0b0c10;
-            --card-bg: rgba(31, 40, 51, 0.7);
-            --text-color: #c5c6c7;
-            --text-bright: #ffffff;
+            --hacker-green: #0f0; /* The classic terminal green */
+            --hacker-dark-green: #003b00;
+            --bg-color: #000000; /* Pure black */
+            --card-bg: rgba(0, 10, 0, 0.9);
         }
 
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Roboto', sans-serif;
+            color: var(--hacker-green);
+            /* Classic monospace font for terminal look */
+            font-family: 'Source Code Pro', 'Courier New', monospace; 
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* Container setup */
-        #tsparticles {
+        /* Matrix Canvas Background */
+        #matrix-canvas {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
             top: 0; left: 0;
+            z-index: -1;
+        }
+
+        /* CRT Monitor Scanline Effect Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0px, rgba(0, 0, 0, 0.5) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.3;
         }
 
         .container {
@@ -46,7 +52,7 @@
             z-index: 1;
         }
 
-        /* Header */
+        /* --- Header Section --- */
         header { text-align: center; margin-bottom: 60px; }
 
         .profile-container {
@@ -59,13 +65,14 @@
             align-items: center;
         }
 
+        /* Glitchy Border Ring */
         .profile-ring {
             position: absolute;
             width: 100%; height: 100%;
             border-radius: 50%;
-            border: 2px solid var(--secondary-color);
-            box-shadow: 0 0 15px rgba(102, 252, 241, 0.2);
-            animation: softPulse 3s infinite alternate;
+            border: 4px dotted var(--hacker-green);
+            box-shadow: 0 0 20px var(--hacker-green);
+            animation: spin-glitch 5s linear infinite alternate;
         }
 
         .profile-img {
@@ -74,219 +81,250 @@
             border-radius: 50%;
             object-fit: cover;
             object-position: center 15%;
-            transform: scale(1.15);
-            border: 2px solid var(--primary-color);
-            transition: all 0.4s ease;
-            filter: grayscale(20%);
+            transform: scale(1.1);
+            /* Green filter for hacker look */
+            filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(50deg) saturate(500%);
+            border: 2px solid var(--hacker-green);
+            transition: all 0.3s;
         }
 
         .profile-container:hover .profile-img {
-            filter: grayscale(0%);
-            transform: scale(1.2);
-            box-shadow: 0 0 30px rgba(102, 252, 241, 0.3);
+             /* Glitch effect on hover */
+             animation: glitch-anim 0.3s infinite;
         }
 
         h1 {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 3rem;
+            font-family: 'VT323', monospace;
+            font-size: 3.5rem;
             margin: 0;
-            font-weight: 700;
-            color: var(--text-bright);
-            letter-spacing: 3px;
+            font-weight: normal;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--hacker-green);
+        }
+        
+        /* Blinking Cursor Effect */
+        h1::after {
+            content: "_";
+            animation: blink 1s step-end infinite;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            color: var(--primary-color);
+            font-size: 1rem;
+            color: var(--hacker-green);
             margin-top: 10px;
-            letter-spacing: 1px;
-            font-weight: 300;
-            border-bottom: 1px solid var(--secondary-color);
+            border: 1px solid var(--hacker-green);
+            background: var(--hacker-dark-green);
             display: inline-block;
-            padding-bottom: 5px;
+            padding: 5px 15px;
+            font-weight: bold;
         }
 
-        /* Card Design */
+        /* --- Terminal Card Design --- */
         .card {
             background: var(--card-bg);
-            border-left: 4px solid var(--secondary-color);
-            border-radius: 8px;
-            padding: 30px;
+            /* Square corners, solid green border */
+            border: 2px solid var(--hacker-green);
+            border-radius: 0px; 
+            padding: 25px;
             margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 5px 5px 0px rgba(0, 255, 0, 0.2);
+            position: relative;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-left-color: var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            font-family: 'Rajdhani', sans-serif;
+        
+        /* Terminal Header Bar stylized */
+        .card h2 {
+            background: var(--hacker-green);
+            color: var(--bg-color);
+            font-family: 'VT323', monospace;
             font-size: 1.8rem;
-            margin-top: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
+            margin: -25px -25px 20px -25px; /* Pull to edges */
+            padding: 5px 15px;
             display: flex;
             align-items: center;
+            text-transform: uppercase;
         }
 
-        p { line-height: 1.8; font-size: 1.05rem; }
-        .icon { margin-right: 15px; font-size: 1.4rem; color: var(--secondary-color); }
+        /* ASCII style icons */
+        .icon { margin-right: 15px; font-weight: bold; }
+
+        p { line-height: 1.6; font-size: 1rem; }
 
         ul { list-style: none; padding: 0; }
         li { 
-            padding: 12px 15px; 
-            margin-bottom: 10px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 2px solid transparent;
-            transition: 0.3s;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--hacker-dark-green);
         }
-        li:hover {
-            background: rgba(102, 252, 241, 0.05);
-            border-left: 2px solid var(--primary-color);
-            padding-left: 20px;
-        }
+        /* ASCII bullet points */
+        li::before { content: "[+] "; color: var(--hacker-green); font-weight: bold;}
 
-        strong { color: var(--text-bright); font-weight: 600; }
+        strong { color: var(--hacker-green); font-weight: 900; text-decoration: underline;}
 
+        /* Terminal Button Style */
         .contact-btn {
             display: inline-block;
-            margin-top: 10px;
-            padding: 12px 30px;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
+            margin-top: 15px;
+            padding: 10px 30px;
+            border: 2px solid var(--hacker-green);
+            background: transparent;
+            color: var(--hacker-green);
             text-decoration: none;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Source Code Pro', monospace;
             font-weight: 700;
-            letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-btn::before {
+            content: ">_ EXECUTE ";
         }
 
         .contact-btn:hover {
-            background: var(--primary-color);
+            background: var(--hacker-green);
             color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+            box-shadow: 0 0 20px var(--hacker-green);
         }
 
         footer {
             text-align: center; margin-top: 60px;
-            color: #666; font-size: 0.9rem;
+            color: var(--hacker-dark-green); font-size: 0.9rem;
         }
 
-        @keyframes softPulse {
-            0% { box-shadow: 0 0 10px rgba(102, 252, 241, 0.1); transform: scale(1); }
-            100% { box-shadow: 0 0 25px rgba(102, 252, 241, 0.3); transform: scale(1.02); }
+        /* --- Animations --- */
+        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes spin-glitch { 
+            0% { transform: rotate(0deg); border-style: dotted; }
+            50% { transform: rotate(180deg); border-style: dashed; opacity: 0.7; }
+            100% { transform: rotate(360deg); border-style: dotted; }
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0) scale(1.1); }
+            20% { transform: translate(-5px, 5px) scale(1.1); filter: hue-rotate(90deg); }
+            40% { transform: translate(-5px, -5px) scale(1.1); }
+            60% { transform: translate(5px, 5px) scale(1.1); filter: hue-rotate(-90deg); }
+            80% { transform: translate(5px, -5px) scale(1.1); }
+            100% { transform: translate(0) scale(1.1); }
         }
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .card { padding: 20px; }
+            .card { padding: 15px; }
+            .card h2 { margin: -15px -15px 15px -15px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="tsparticles"></div>
+    <canvas id="matrix-canvas"></canvas>
 
     <div class="container">
-        <header class="animate__animated animate__fadeInDown">
+        <header class="animate__animated animate__fadeIn">
             <div class="profile-container">
                 <div class="profile-ring"></div>
                 <img src="me.png" alt="Shuvo" class="profile-img">
             </div>
             
-            <h1>Hello, I'm Shuvo</h1>
-            <div class="subtitle">Bridging Business Acumen with Technical Innovation</div>
+            <h1>root@shuvo:~# WHOAMI</h1>
+            <div class="subtitle">[ STATUS: BRIDGING_BUSINESS_&_TECH ]</div>
         </header>
 
         <main>
             <section class="card animate__animated animate__fadeInUp">
-                <h2><span class="icon">👤</span>About Me</h2>
+                <h2><span class="icon">[>]</span> ACCESSING BIO_DATA...</h2>
                 <p>As a final-year BBA student in the Department of Management at Rajshahi College, I possess a unique perspective that blends business strategy with technical proficiency. While my academic foundation is rooted in management, my true passion lies in exploring the intricacies of the digital world—from network protocols to AI development. I believe that the synergy between managerial skills and technical expertise is what sets me apart in today's dynamic landscape.</p>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                <h2><span class="icon">🚀</span>Passion & Skills</h2>
+                <h2><span class="icon">[#]</span> PASSION_&_SKILLS_LIST</h2>
                 <ul>
-                    <li><span class="icon">🎓</span> <strong>Academic Background:</strong> BBA (Final Year), Rajshahi College. Focused on Management and Business Strategy.</li>
-                    <li><span class="icon">💻</span> <strong>Tech Enthusiast:</strong> Deeply interested in Network Configuration, Web Development, and Device Customization. Currently expanding my expertise in Artificial Intelligence and its practical applications.</li>
-                    <li><span class="icon">🎮</span> <strong>Dedicated Gamer:</strong> A competitive gamer with a focus on strategy and rapid decision-making. My experience in high-intensity gaming environments has honed my patience, focus, and ability to perform under pressure.</li>
+                    <li><strong>Academic Background:</strong> BBA (Final Year), Rajshahi College. Focused on Management and Business Strategy.</li>
+                    <li><strong>Tech Enthusiast:</strong> Deeply interested in Network Configuration, Web Development, and Device Customization. Currently expanding my expertise in Artificial Intelligence and its practical applications.</li>
+                    <li><strong>Dedicated Gamer:</strong> A competitive gamer with a focus on strategy and rapid decision-making. My experience in high-intensity gaming environments has honed my patience, focus, and ability to perform under pressure.</li>
                 </ul>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                <h2><span class="icon">❤️</span>The Human Side</h2>
+                <h2><span class="icon">[*]</span> THE_HUMAN_SIDE_LOG</h2>
                 <p>Beyond the screen, I am a compassionate individual who values empathy and community. I am deeply committed to animal welfare, specifically caring for street animals, which brings a sense of balance and purpose to my life.</p>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
-                <h2><span class="icon">🌍</span>Future Vision</h2>
+                <h2><span class="icon">[$]</span> FUTURE_VISION_TARGET</h2>
                 <p>My goal is to explore the diverse landscapes of Bangladesh. I aspire to travel across the country, gaining new experiences and cultural insights that will broaden my horizons.</p>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.8s; text-align: center;">
-                <h2><span class="icon">✉️</span>Get in Touch</h2>
-                <p>Open for opportunities, collaboration, or tech talks.</p>
-                <div style="margin-top: 15px;">
+                <h2><span class="icon">[@]</span> INITIATE_UPLINK</h2>
+                <p>Open for opportunities, collaboration, or encrypted tech talks.</p>
+                <div>
                     <a href="mailto:mehedihasanshuvo.cv@gmail.com" class="contact-btn">
-                        Email Me
+                        MAIL_TO_SHUVO
                     </a>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2026 Shuvo | System Online</p>
+            <p>// SYSTEM SECURE // © 2026 Shuvo | NODE_ACTIVE</p>
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
     <script>
-        tsparticles.load("tsparticles", {
-            fullScreen: { enable: false },
-            background: { color: { value: "transparent" } },
-            fpsLimit: 60,
-            interactivity: {
-                events: {
-                    onHover: { enable: true, mode: "bubble" },
-                    resize: true
-                },
-                modes: {
-                    bubble: { distance: 200, size: 6, duration: 2, opacity: 0.8 }
-                }
-            },
-            particles: {
-                color: { value: "#66fcf1" },
-                links: {
-                    color: "#45a29e",
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    outModes: { default: "bounce" }
-                },
-                number: { value: 60, density: { enable: true, area: 800 } },
-                opacity: { value: 0.3, random: true },
-                shape: { type: "circle" },
-                size: { value: { min: 1, max: 3 }, random: true }
-            },
-            detectRetina: true
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters used in the matrix rain (Katagana + Numbers)
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const alphabet = katakana.split('');
+
+        const fontSize = 16;
+        const columns = canvas.width/fontSize; //number of columns for the rain
+
+        //an array of drops - one per column
+        const drops = [];
+        //x below is the x coordinate
+        //1 = y co-ordinate of the drop(same for every drop initially)
+        for(let x = 0; x < columns; x++)
+            drops[x] = 1; 
+
+        //drawing the characters
+        function draw() {
+            //Black BG for the canvas
+            //translucent BG to show trail
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0"; //green text
+            ctx.font = fontSize + "px arial";
+            //looping over drops
+            for(let i = 0; i < drops.length; i++)
+            {
+                //a random chinese character to print
+                const text = alphabet[Math.floor(Math.random()*alphabet.length)];
+                //x = i*fontSize, y = value of drops[i]*fontSize
+                ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+                //sending the drop back to the top randomly after it has crossed the screen
+                //adding a randomness to the reset to make the drops scattered on the Y axis
+                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+
+                //incrementing Y coordinate
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
     </script>
 
