@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuvo's Story | System Online</title>
+    <title>Shuvo | Professional Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
@@ -19,7 +19,7 @@
             padding: 0;
             background-color: var(--bg-dark);
             color: var(--neon-blue);
-            /* Readable font for text, Sci-Fi headers */
+            /* Readable font for body text */
             font-family: 'Segoe UI', 'Roboto', sans-serif; 
             overflow-x: hidden;
             min-height: 100vh;
@@ -97,13 +97,15 @@
             font-weight: bold;
             text-shadow: 0 0 20px var(--neon-blue);
             text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
         }
 
         .subtitle {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--neon-purple);
-            margin-top: 10px;
+            margin-top: 15px;
             letter-spacing: 1px;
             border-bottom: 1px solid var(--neon-purple);
             display: inline-block;
@@ -155,19 +157,21 @@
             letter-spacing: 1px;
         }
 
-        p { color: #e0e6ed; font-size: 1.05rem; }
+        p { color: #e0e6ed; font-size: 1.05rem; line-height: 1.8; }
 
         .icon { margin-right: 15px; font-size: 1.5rem; }
         .highlight { color: var(--neon-purple); font-weight: bold; }
 
         ul { list-style: none; padding: 0; }
         li { 
-            padding: 12px; 
+            padding: 15px; 
             border-left: 3px solid var(--neon-purple); 
             background: linear-gradient(90deg, rgba(188, 19, 254, 0.1), transparent);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             color: #e0e6ed;
         }
+
+        strong { color: var(--neon-blue); }
 
         footer {
             text-align: center;
@@ -180,6 +184,7 @@
         /* Mobile Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 0.9rem; }
             .profile-container { transform: scale(0.85); }
         }
     </style>
@@ -196,38 +201,38 @@
                 <img src="me.png" alt="Shuvo" class="profile-img">
             </div>
             
-            <h1>I AM SHUVO</h1>
-            <div class="subtitle">BBA Student | Tech Enthusiast | Hardcore Gamer</div>
+            <h1>HELLO, I'M SHUVO</h1>
+            <div class="subtitle">Bridging Business Acumen with Technical Innovation</div>
         </header>
 
         <main>
             <section class="card animate__animated animate__fadeInUp">
-                <h2><span class="icon">👤</span>About Me (Bio)</h2>
-                <p>I am a final year BBA student in the Management Department at Rajshahi College. Beyond textbooks, my real world revolves around technology and gaming. My curiosity isn't limited to just playing games; I am constantly drawn to the technical aspects behind the internet, networking, and website creation. I believe the blend of management knowledge and technical skills makes me stand out from the rest.</p>
+                <h2><span class="icon">👤</span>About Me</h2>
+                <p>As a final-year BBA student in the Department of Management at Rajshahi College, I possess a unique perspective that blends business strategy with technical proficiency. While my academic foundation is rooted in management, my true passion lies in exploring the intricacies of the digital world—from network protocols to AI development. I believe that the synergy between managerial skills and technical expertise is what sets me apart in today's dynamic landscape.</p>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                <h2><span class="icon">🚀</span>My Passion & Skills</h2>
+                <h2><span class="icon">🚀</span>Passion & Skills</h2>
                 <ul>
-                    <li><span class="icon">🎓</span> <strong>Academic:</strong> BBA (Final Year), Rajshahi College.</li>
-                    <li><span class="icon">💻</span> <strong>Tech Savvy:</strong> Building websites and tinkering with networking protocols or device customization are my favorite activities. Currently, AI is my new passion.</li>
-                    <li><span class="icon">🎮</span> <strong>Hardcore Gamer:</strong> Gaming is my emotion. I play extensively on both PC and mobile. I have the patience and dedication to game for nearly 12 hours a day.</li>
+                    <li><span class="icon">🎓</span> <strong>Academic Background:</strong> BBA (Final Year), Rajshahi College. Focused on Management and Business Strategy.</li>
+                    <li><span class="icon">💻</span> <strong>Tech Enthusiast:</strong> Deeply interested in Network Configuration, Web Development, and Device Customization. Currently expanding my expertise in Artificial Intelligence and its practical applications.</li>
+                    <li><span class="icon">🎮</span> <strong>Dedicated Gamer:</strong> A competitive gamer with a focus on strategy and rapid decision-making. My experience in high-intensity gaming environments has honed my patience, focus, and ability to perform under pressure.</li>
                 </ul>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                <h2><span class="icon">🐾</span>The Human Side</h2>
-                <p>I am a lively person. Hanging out with friends and traveling are part of my routine. I have a special soft spot for <span class="highlight">Street Pets</span>. Loving and caring for them gives me mental peace.</p>
+                <h2><span class="icon">❤️</span>The Human Side</h2>
+                <p>Beyond the screen, I am a compassionate individual who values empathy and community. I am deeply committed to animal welfare, specifically caring for <span class="highlight">street animals</span>, which brings a sense of balance and purpose to my life.</p>
             </section>
 
             <section class="card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
-                <h2><span class="icon">🌍</span>Future Goal</h2>
-                <p>My dream is to travel across the whole of Bangladesh. Seeing every corner of the country with my own eyes and gathering new experiences is at the very top of my bucket list.</p>
+                <h2><span class="icon">🌍</span>Future Vision</h2>
+                <p>My goal is to explore the diverse landscapes of Bangladesh. I aspire to travel across the country, gaining new experiences and cultural insights that will broaden my horizons.</p>
             </section>
         </main>
 
         <footer>
-            <p>// SYSTEM ONLINE // © 2026 | Shuvo's Autobiography</p>
+            <p>// SYSTEM ONLINE // © 2026 | Shuvo's Portfolio</p>
         </footer>
     </div>
 
