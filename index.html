@@ -3,51 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আমার গল্প | Shuvo's Autobiography</title>
+    <title>শুভ'র গল্প | Shuvo's Story</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
-        body { line-height: 1.8; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        h1, h2 { color: #0076d1; }
-        .highlight { font-weight: bold; color: #d14d00; }
-        section { margin-bottom: 30px; }
-        .icon { margin-right: 10px; }
+        :root {
+            --background-body: #0d1117;
+            --text-main: #c9d1d9;
+            --text-bright: #58a6ff;
+        }
+
+        body {
+            line-height: 1.8;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: var(--text-bright);
+            border-bottom: 2px solid #30363d;
+            padding-bottom: 10px;
+        }
+
+        /* কার্ড স্টাইল অ্যানিমেশন */
+        section {
+            background: #1c2128;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border: 1px solid #30363d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: var(--text-bright);
+        }
+
+        .highlight {
+            color: #ff7b72;
+            font-weight: bold;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 50px;
+        }
+
+        /* টেক্সট অ্যানিমেশন */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in;
+        }
     </style>
 </head>
 <body>
-    <header>
+
+    <header class="animate__animated animate__fadeInDown">
         <h1>স্বাগতম, আমি শুভ</h1>
-        <p>BBA Student | Tech Enthusiast | Hardcore Gamer</p>
+        <p style="font-size: 1.2rem; color: #8b949e;">BBA Student | Tech Enthusiast | Hardcore Gamer</p>
     </header>
 
     <main>
-        <section id="about">
-            <h2>About Me (Bio)</h2>
+        <section class="animate__animated animate__fadeInUp">
+            <h2><span class="icon">👤</span>About Me (Bio)</h2>
             <p>আমি রাজশাহী কলেজে Management ডিপার্টমেন্টে BBA ফাইনাল ইয়ারে পড়ছি। তবে পাঠ্যবইয়ের বাইরে আমার আসল জগৎটা প্রযুক্তি আর গেমিং ঘিরে। আমার কৌতূহল শুধু গেম খেলাতেই সীমাবদ্ধ নয়, বরং ইন্টারনেট, নেটওয়ার্কিং এবং ওয়েবসাইট তৈরির পেছনের কারিগরি বিষয়গুলো আমাকে সবসময় টানে। আমি বিশ্বাস করি, ম্যানেজমেন্টের জ্ঞান এবং টেকনিক্যাল দক্ষতা—এই দুইয়ের মিশ্রণেই আমি অন্যদের চেয়ে আলাদা।</p>
         </section>
 
-        <section id="passion-skills">
-            <h2>My Passion & Skills (What Defines Me)</h2>
+        <section class="animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+            <h2><span class="icon">🚀</span>My Passion & Skills</h2>
             <ul>
-                <li><span class="icon">🎓</span> <strong>Academic:</strong> BBA (Final Year), Department of Management, Rajshahi College.</li>
-                <li><span class="icon">💻</span> <strong>Tech Savvy:</strong> শখের বসে টুকটাক ওয়েবসাইট বানানো এবং নেটওয়ার্কিং বা ইন্টারনেট প্রটোকল, ডিভাইস কাস্টমাইজেশন নিয়ে ঘাঁটাঘাঁটি করা আমার প্রিয় কাজ। বর্তমানে AI আমার নতুন প্যাশন।</li>
-                <li><span class="icon">🎮</span> <strong>Hardcore Gamer:</strong> গেমিং আমার কাছে শুধু বিনোদন নয়, এটি একটি আবেগ। পিসি এবং মোবাইল—উভয় প্ল্যাটফর্মেই আমি দাপিয়ে খেলি। দিনে প্রায় ১২ ঘণ্টা গেমিং করার ধৈর্য আমার আছে।</li>
+                <li><span class="icon">🎓</span> <strong>Academic:</strong> BBA (Final Year), Rajshahi College.</li>
+                <li><span class="icon">💻</span> <strong>Tech Savvy:</strong> ওয়েবসাইট এবং নেটওয়ার্কিং প্রটোকল বা ডিভাইস কাস্টমাইজেশন আমার প্রিয় কাজ। বর্তমানে AI আমার নতুন প্যাশন।</li>
+                <li><span class="icon">🎮</span> <strong>Hardcore Gamer:</strong> গেমিং আমার আবেগ। দিনে প্রায় ১২ ঘণ্টা গেমিং করার ধৈর্য এবং দ্রুত সিদ্ধান্ত নেওয়ার ক্ষমতা আমার আছে।</li>
             </ul>
         </section>
 
-        <section id="human-side">
-            <h2>The Human Side (Personal Life)</h2>
-            <p>প্রযুক্তির বাইরে আমি একজন প্রাণোচ্ছল মানুষ। বন্ধুদের সাথে আড্ডা দেওয়া আর ঘোরাঘুরি আমার রুটিনের অংশ। আমার একটি বিশেষ দুর্বলতা আছে—<span class="highlight">Street Pets (পথের প্রাণী)</span>। এদের ভালোবাসা এবং যত্ন নেওয়া আমাকে মানসিক প্রশান্তি দেয়।</p>
+        <section class="animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+            <h2><span class="icon">🐾</span>The Human Side</h2>
+            <p>আমি একজন প্রাণোচ্ছল মানুষ। বন্ধুদের সাথে আড্ডা দেওয়া আর ঘোরাঘুরি আমার রুটিন। আমার একটি বিশেষ দুর্বলতা আছে—<span class="highlight">Street Pets (পথের প্রাণী)</span>। এদের ভালোবাসা এবং যত্ন নেওয়া আমাকে মানসিক প্রশান্তি দেয়।</p>
         </section>
 
-        <section id="future-goal">
-            <h2>Future Goal (Vision)</h2>
-            <p>আমার স্বপ্ন পুরো বাংলাদেশ ঘুরে দেখা। দেশের প্রতিটি কোণ নিজের চোখে দেখা এবং নতুন নতুন অভিজ্ঞতা সঞ্চয় করা আমার বাকেট লিস্টের একদম শুরুতে।</p>
+        <section class="animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+            <h2><span class="icon">🌍</span>Future Goal</h2>
+            <p>আমার স্বপ্ন পুরো বাংলাদেশ ঘুরে দেখা। দেশের প্রতিটি কোণ নিজের চোখে দেখা এবং নতুন নতুন অভিজ্ঞতা সঞ্চয় করা আমার বাকেট লিস্টের একদম শুরুতে।</p>
         </section>
     </main>
 
-    <footer>
-        <hr>
-        <p>© ২০২৬ | Shuvo's Personal Autobiography | Built with GitHub Pages</p>
+    <footer class="animate__animated animate__fadeIn">
+        <p>© ২০২৬ | Shuvo's Personal Autobiography</p>
     </footer>
+
 </body>
 </html>
