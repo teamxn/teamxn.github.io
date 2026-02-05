@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shuvo | Professional Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
     
     <style>
         :root {
-            /* চোখের জন্য আরামদায়ক কালার প্যালেট (Deep Tech) */
-            --primary-color: #66fcf1; /* Soft Cyan */
-            --secondary-color: #45a29e; /* Muted Teal */
-            --bg-color: #0b0c10; /* Deep Black/Grey */
-            --card-bg: rgba(31, 40, 51, 0.7); /* Dark Grey Glass */
-            --text-color: #c5c6c7; /* Light Grey (Readable) */
+            --primary-color: #66fcf1;
+            --secondary-color: #45a29e;
+            --bg-color: #0b0c10;
+            --card-bg: rgba(31, 40, 51, 0.7);
+            --text-color: #c5c6c7;
             --text-bright: #ffffff;
         }
 
@@ -29,7 +29,7 @@
             min-height: 100vh;
         }
 
-        /* Particles Container */
+        /* Container setup */
         #tsparticles {
             position: fixed;
             width: 100%;
@@ -46,7 +46,7 @@
             z-index: 1;
         }
 
-        /* --- Header Section --- */
+        /* Header */
         header { text-align: center; margin-bottom: 60px; }
 
         .profile-container {
@@ -59,7 +59,6 @@
             align-items: center;
         }
 
-        /* Soft Pulse instead of aggressive glitch */
         .profile-ring {
             position: absolute;
             width: 100%; height: 100%;
@@ -75,10 +74,10 @@
             border-radius: 50%;
             object-fit: cover;
             object-position: center 15%;
-            transform: scale(1.15); /* Zoomed in face */
+            transform: scale(1.15);
             border: 2px solid var(--primary-color);
             transition: all 0.4s ease;
-            filter: grayscale(20%); /* Slightly muted for class */
+            filter: grayscale(20%);
         }
 
         .profile-container:hover .profile-img {
@@ -108,10 +107,10 @@
             padding-bottom: 5px;
         }
 
-        /* --- Card Design (Clean & Glassy) --- */
+        /* Card Design */
         .card {
             background: var(--card-bg);
-            border-left: 4px solid var(--secondary-color); /* Minimal border */
+            border-left: 4px solid var(--secondary-color);
             border-radius: 8px;
             padding: 30px;
             margin-bottom: 30px;
@@ -138,7 +137,6 @@
         }
 
         p { line-height: 1.8; font-size: 1.05rem; }
-        
         .icon { margin-right: 15px; font-size: 1.4rem; color: var(--secondary-color); }
 
         ul { list-style: none; padding: 0; }
@@ -158,7 +156,6 @@
 
         strong { color: var(--text-bright); font-weight: 600; }
 
-        /* Contact Button - Sleek */
         .contact-btn {
             display: inline-block;
             margin-top: 10px;
@@ -185,7 +182,6 @@
             color: #666; font-size: 0.9rem;
         }
 
-        /* Smooth Animation */
         @keyframes softPulse {
             0% { box-shadow: 0 0 10px rgba(102, 252, 241, 0.1); transform: scale(1); }
             100% { box-shadow: 0 0 25px rgba(102, 252, 241, 0.3); transform: scale(1.02); }
@@ -253,6 +249,7 @@
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
     <script>
         tsparticles.load("tsparticles", {
             fullScreen: { enable: false },
@@ -260,7 +257,7 @@
             fpsLimit: 60,
             interactivity: {
                 events: {
-                    onHover: { enable: true, mode: "bubble" }, // Gentle bubble effect
+                    onHover: { enable: true, mode: "bubble" },
                     resize: true
                 },
                 modes: {
@@ -268,24 +265,24 @@
                 }
             },
             particles: {
-                color: { value: "#66fcf1" }, // Soft Cyan color
+                color: { value: "#66fcf1" },
                 links: {
                     color: "#45a29e",
                     distance: 150,
                     enable: true,
-                    opacity: 0.2, // Very faint lines
+                    opacity: 0.2,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1, // Slow, relaxing speed
+                    speed: 1,
                     direction: "none",
                     random: false,
                     straight: false,
                     outModes: { default: "bounce" }
                 },
                 number: { value: 60, density: { enable: true, area: 800 } },
-                opacity: { value: 0.3, random: true }, // Not too bright
+                opacity: { value: 0.3, random: true },
                 shape: { type: "circle" },
                 size: { value: { min: 1, max: 3 }, random: true }
             },
