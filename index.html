@@ -32,6 +32,7 @@
             overflow-x: hidden;
         }
 
+        /* Subtle animated background */
         body::before {
             content: '';
             position: fixed;
@@ -54,6 +55,7 @@
             z-index: 1;
         }
 
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 80px;
@@ -114,6 +116,7 @@
             font-weight: 500;
         }
 
+        /* Terminal Window Cards */
         .window {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -197,6 +200,7 @@
             margin-bottom: 15px;
         }
 
+        /* Code Block Style Lists */
         .code-list {
             list-style: none;
             padding: 0;
@@ -232,6 +236,7 @@
             font-weight: 600;
         }
 
+        /* Button */
         .cta-button {
             display: inline-flex;
             align-items: center;
@@ -249,7 +254,6 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
 
         .cta-button::before {
@@ -274,6 +278,7 @@
             box-shadow: 0 5px 20px rgba(88, 166, 255, 0.3);
         }
 
+        /* Inline code styling */
         code {
             background: rgba(88, 166, 255, 0.1);
             color: var(--accent);
@@ -282,6 +287,7 @@
             font-size: 0.9em;
         }
 
+        /* Footer */
         footer {
             text-align: center;
             margin-top: 80px;
@@ -291,6 +297,17 @@
             border-top: 1px solid var(--border);
         }
 
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--accent-2);
+        }
+
+        /* Floating particles - subtle */
         .particle {
             position: fixed;
             width: 4px;
@@ -303,12 +320,21 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-20px) translateX(10px); }
-            50% { transform: translateY(-40px) translateX(-10px); }
-            75% { transform: translateY(-20px) translateX(10px); }
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(-40px) translateX(-10px);
+            }
+            75% {
+                transform: translateY(-20px) translateX(10px);
+            }
         }
 
+        /* Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -336,6 +362,7 @@
             50% { opacity: 0.3; }
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .profile-hex { width: 160px; height: 160px; }
@@ -346,23 +373,45 @@
         @media (max-width: 480px) {
             h1 { font-size: 2rem; }
             .container { padding: 40px 15px; }
+            .cta-button { padding: 12px 28px; font-size: 1rem; }
+        }
+
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
     </style>
 </head>
 <body>
     
+    <!-- Subtle floating particles -->
     <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
     <div class="particle" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
     <div class="particle" style="top: 30%; left: 70%; animation-delay: 4s;"></div>
 
     <div class="container">
         
+        <!-- Header -->
         <header>
             <div class="profile-hex">
                 <div class="profile-inner">
                     <img src="me.png" alt="Shuvo" class="profile-img">
                 </div>
             </div>
+            
             <h1>Shuvo</h1>
             <p class="tagline">
                 <span>Business mind</span> meets <span>Tech soul</span>
@@ -370,72 +419,174 @@
             <div class="status-badge">Available for projects</div>
         </header>
 
+        <!-- About Window -->
         <div class="window" data-delay="0">
             <div class="window-header">
-                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
                 <span class="window-title">about.md</span>
             </div>
             <div class="window-body">
                 <p class="prompt">cat about.md</p>
                 <h2><span class="icon">👤</span> Who I Am</h2>
-                <p>Final-year BBA student at Rajshahi College—balancing market strategies with network tinkering, web apps, and AI exploration.</p>
-                <p>The future belongs to those who speak both <code>business_logic</code> and <code>code_logic</code>.</p>
+                <p>
+                    Final-year BBA student at Rajshahi College, but that's just the surface. I'm someone who refuses to choose between the business world and the tech realm—I thrive in both.
+                </p>
+                <p>
+                    By day, I'm analyzing market strategies and business models. By night, I'm tinkering with networks, building web apps, and diving into AI. This intersection is where magic happens.
+                </p>
+                <p>
+                    My belief? The future belongs to those who can speak both languages: <code>business_logic</code> and <code>code_logic</code>.
+                </p>
             </div>
         </div>
 
+        <!-- Skills Window -->
         <div class="window" data-delay="100">
             <div class="window-header">
-                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
                 <span class="window-title">skills.json</span>
             </div>
             <div class="window-body">
                 <p class="prompt">cat skills.json</p>
                 <h2><span class="icon">⚡</span> What I Do</h2>
                 <ul class="code-list">
-                    <li><span><span class="label">academic:</span> BBA (Management) @ Rajshahi College</span></li>
-                    <li><span><span class="label">tech:</span> OpenWrt, Networking, Web Dev, AI</span></li>
-                    <li><span><span class="label">mindset:</span> Strategic thinking & problem solving</span></li>
+                    <li>
+                        <span>
+                            <span class="label">academic:</span> BBA (Final Year) in Management at Rajshahi College—learning how businesses tick
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <span class="label">tech:</span> Network configuration, web development, AI exploration, device customization—my digital playground
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <span class="label">gaming:</span> Competitive strategy gaming—where I learned patience, focus, and thinking 10 moves ahead
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <span class="label">mindset:</span> Strategic thinking, rapid learning, problem-solving under pressure
+                        </span>
+                    </li>
                 </ul>
             </div>
         </div>
 
+        <!-- Values Window -->
         <div class="window" data-delay="200">
             <div class="window-header">
-                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="window-title">values.txt</span>
+            </div>
+            <div class="window-body">
+                <p class="prompt">cat values.txt</p>
+                <h2><span class="icon">❤️</span> Beyond The Screen</h2>
+                <p>
+                    Tech is cool, business is exciting, but at the end of the day, it's about people and compassion.
+                </p>
+                <p>
+                    I care for street animals in my community—it keeps me grounded and reminds me that impact doesn't always need to be at scale. Sometimes it's just about showing up for those who need it.
+                </p>
+                <p>
+                    Empathy, community, and making things a little better wherever I can—that's the operating system I run on.
+                </p>
+            </div>
+        </div>
+
+        <!-- Dreams Window -->
+        <div class="window" data-delay="300">
+            <div class="window-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="window-title">dreams.sh</span>
+            </div>
+            <div class="window-body">
+                <p class="prompt">./dreams.sh --run</p>
+                <h2><span class="icon">🗺️</span> What's Next</h2>
+                <p>
+                    I want to explore every corner of Bangladesh—all 64 districts. Not as a tourist, but as someone who wants to understand the diverse cultures, landscapes, and stories of my own country.
+                </p>
+                <p>
+                    Every journey teaches something new. Every conversation broadens perspective. That's the kind of learning that can't be found in textbooks or terminals.
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div class="window" data-delay="400">
+            <div class="window-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
                 <span class="window-title">contact.sh</span>
             </div>
             <div class="window-body">
                 <p class="prompt">./contact.sh --init</p>
                 <h2><span class="icon">📬</span> Let's Connect</h2>
-                <p>Got a project idea or just want to chat about tech and strategy?</p>
-                
-                <p style="margin: 20px 0;">
-                    <span class="label">email:</span> 
-                    <code>mail@shuvo.bro.bd</code>
+                <p>
+                    Got a project idea? Want to talk about the intersection of business and tech? Or just want to chat about AI, networks, or strategy games?
                 </p>
-
+                <p>
+                    I'm always down for good conversations and cool collaborations.
+                </p>
                 <a href="mailto:mail@shuvo.bro.bd" class="cta-button">
                     <span>→</span> Drop me a message
                 </a>
             </div>
         </div>
 
+        <!-- Footer -->
         <footer>
-            <p>Built with purpose. Standing for justice & Palestine 🇵🇸</p>
+            <p>
+                Built with purpose. Standing for justice & Palestine 🇵🇸
+            </p>
         </footer>
     </div>
 
     <script>
+        // Intersection Observer for smooth reveal
         const windows = document.querySelectorAll('.window');
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 });
+        }, {
+            threshold: 0.2
+        });
+
         windows.forEach(window => observer.observe(window));
+
+        // Generate more particles dynamically
+        function createParticles() {
+            const particleCount = 5;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        createParticles();
     </script>
 
 </body>
