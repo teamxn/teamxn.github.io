@@ -3,591 +3,978 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shuvo | Digital Nomad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --border: #30363d;
-            --text: #c9d1d9;
-            --text-dim: #8b949e;
-            --accent: #58a6ff;
-            --accent-2: #f778ba;
-            --success: #3fb950;
-        }
 
+    <title>Mehedi Hasan Shuvo | Business × Technology</title>
+
+    <meta name="description"
+        content="Mehedi Hasan Shuvo — Final-year BBA student at Rajshahi College exploring business, technology, AI, networking and web development.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Fira Code', monospace;
-            line-height: 1.6;
-            overflow-x: hidden;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Subtle animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(88, 166, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(247, 120, 186, 0.05) 0%, transparent 50%);
-            z-index: 0;
-            pointer-events: none;
+        body {
+            font-family: "Inter", sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            position: relative;
-            z-index: 1;
+            width: min(1100px, 90%);
+            margin: auto;
         }
 
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
+        /* =========================
+           NAVBAR
+        ========================= */
 
-        .profile-hex {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            position: relative;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            padding: 3px;
-            transition: transform 0.3s;
-        }
-
-        .profile-hex:hover {
-            transform: scale(1.05);
-        }
-
-        .profile-inner {
+        nav {
+            position: fixed;
+            top: 0;
             width: 100%;
-            height: 100%;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: var(--bg);
+            z-index: 1000;
+
+            background: rgba(10, 10, 10, 0.78);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-inner {
+            height: 72px;
+
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
         }
 
-        .profile-img {
-            width: 110%;
-            height: 110%;
-            object-fit: cover;
-            object-position: center 15%;
-        }
-
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin: 20px 0;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
             letter-spacing: -1px;
         }
 
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            font-weight: 400;
+        .logo span {
+            color: #8b5cf6;
         }
 
-        .tagline span {
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        /* Terminal Window Cards */
-        .window {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 30px;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .window.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .window:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.1);
-        }
-
-        .window-header {
-            background: rgba(48, 54, 61, 0.5);
-            padding: 12px 20px;
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-
-        .window-title {
-            margin-left: 15px;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .window-body {
-            padding: 30px;
-        }
-
-        .prompt {
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        .prompt::before {
-            content: '$ ';
-            color: var(--success);
-        }
-
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            color: var(--text);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .icon {
-            font-size: 1.5rem;
-        }
-
-        p {
-            color: var(--text-dim);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        /* Code Block Style Lists */
-        .code-list {
+            gap: 28px;
             list-style: none;
-            padding: 0;
         }
 
-        .code-list li {
-            padding: 15px 20px;
-            margin-bottom: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid var(--border);
-            border-radius: 4px;
-            transition: all 0.3s;
+        .nav-links a {
+            font-size: 14px;
+            color: #bdbdbd;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
             display: flex;
-            align-items: start;
-            gap: 10px;
-        }
-
-        .code-list li:hover {
-            background: rgba(88, 166, 255, 0.05);
-            border-left-color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .code-list li::before {
-            content: '▸';
-            color: var(--accent);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .label {
-            color: var(--accent-2);
-            font-weight: 600;
-        }
-
-        /* Button */
-        .cta-button {
-            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 35px;
-            margin-top: 20px;
-            background: transparent;
-            color: var(--accent);
-            text-decoration: none;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid var(--accent);
-            border-radius: 6px;
-            transition: all 0.3s;
+
+            padding-top: 80px;
+
             position: relative;
             overflow: hidden;
         }
 
-        .cta-button::before {
-            content: '';
+        .hero::before {
+            content: "";
+
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            transition: left 0.3s;
-            z-index: -1;
+
+            width: 500px;
+            height: 500px;
+
+            background: #5b21b6;
+            filter: blur(180px);
+
+            opacity: 0.18;
+
+            right: -150px;
+            top: 100px;
         }
 
-        .cta-button:hover::before {
-            left: 0;
+        .hero-content {
+            position: relative;
+            max-width: 850px;
         }
 
-        .cta-button:hover {
-            color: var(--bg);
+        .eyebrow {
+            color: #9ca3af;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 90px);
+
+            line-height: 1;
+            letter-spacing: -5px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #8b5cf6
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text {
+            max-width: 720px;
+
+            font-size: 18px;
+
+            color: #a3a3a3;
+
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .btn {
+            padding: 13px 22px;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+            font-size: 14px;
+
+            display: inline-block;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(88, 166, 255, 0.3);
+            background: #e5e5e5;
         }
 
-        /* Inline code styling */
-        code {
-            background: rgba(88, 166, 255, 0.1);
-            color: var(--accent);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.9em;
+        .btn-outline {
+            border: 1px solid #333333;
+            color: #dddddd;
         }
 
-        /* Footer */
-        footer {
+        .btn-outline:hover {
+            border-color: #666666;
+            background: #151515;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 110px 0;
+
+            border-top: 1px solid #171717;
+        }
+
+        .section-label {
+            color: #8b5cf6;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 38px;
+
+            line-height: 1.15;
+            letter-spacing: -2px;
+
+            margin-bottom: 25px;
+        }
+
+        .section-text {
+            max-width: 800px;
+
+            color: #a1a1a1;
+
+            font-size: 17px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: start;
+        }
+
+        .about-highlight {
+            font-size: 24px;
+
+            line-height: 1.5;
+
+            font-weight: 600;
+
+            color: #dddddd;
+        }
+
+        .about-highlight span {
+            color: #8b5cf6;
+        }
+
+        /* =========================
+           EDUCATION
+        ========================= */
+
+        .education-card {
+            margin-top: 35px;
+
+            padding: 28px;
+
+            background: #111111;
+
+            border: 1px solid #1f1f1f;
+
+            border-radius: 14px;
+        }
+
+        .education-card h3 {
+            font-size: 21px;
+
+            margin-bottom: 6px;
+        }
+
+        .education-card p {
+            color: #999999;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+            margin-top: 40px;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+        .skill-card {
+            padding: 24px;
+
+            background: #101010;
+
+            border: 1px solid #1e1e1e;
+
+            border-radius: 12px;
+
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+
+            border-color: #444444;
+        }
+
+        .skill-number {
+            color: #666666;
+
+            font-size: 13px;
+
+            margin-bottom: 10px;
+        }
+
+        .skill-card h3 {
+            font-size: 19px;
+        }
+
+        /* =========================
+           MINDSET
+        ========================= */
+
+        .mindset {
+            margin-top: 35px;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 10px 15px;
+
+            border: 1px solid #292929;
+
+            border-radius: 50px;
+
+            color: #cfcfcf;
+
+            background: #111111;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           BEYOND THE SCREEN
+        ========================= */
+
+        .beyond {
+            background: #0d0d0d;
+        }
+
+        .quote {
+            margin-top: 35px;
+
+            padding: 30px;
+
+            border-left: 3px solid #8b5cf6;
+
+            background: #111111;
+
+            color: #c9c9c9;
+
+            font-size: 20px;
+        }
+
+        /* =========================
+           GOAL
+        ========================= */
+
+        .goal-box {
+            margin-top: 35px;
+
+            padding: 35px;
+
+            border: 1px solid #242424;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111111,
+                    #0c0c0c
+                );
+        }
+
+        .goal-box h3 {
+            font-size: 25px;
+
+            margin-bottom: 12px;
+        }
+
+        .goal-box p {
+            color: #a3a3a3;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
             text-align: center;
-            margin-top: 80px;
-            padding: 30px 0;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
+
+            padding-bottom: 80px;
         }
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s;
+        .contact .section-text {
+            margin: auto;
         }
 
-        footer a:hover {
-            color: var(--accent-2);
+        .contact-buttons {
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
         }
 
-        /* Floating particles - subtle */
-        .particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.3;
-            animation: float 10s infinite;
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #171717;
+
+            padding: 25px 0;
+
+            color: #666666;
+
+            text-align: center;
+
+            font-size: 13px;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
             }
-            25% {
-                transform: translateY(-20px) translateX(10px);
+
+            .hero h1 {
+                letter-spacing: -3px;
             }
-            50% {
-                transform: translateY(-40px) translateX(-10px);
+
+            .hero-text {
+                font-size: 16px;
             }
-            75% {
-                transform: translateY(-20px) translateX(10px);
+
+            section {
+                padding: 80px 0;
             }
-        }
 
-        /* Status Badge */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(63, 185, 80, 0.1);
-            border: 1px solid var(--success);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--success);
-            margin-top: 15px;
-        }
+            .about-grid {
+                grid-template-columns: 1fr;
 
-        .status-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
+                gap: 30px;
+            }
 
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .profile-hex { width: 160px; height: 160px; }
-            .window-body { padding: 20px; }
-            h2 { font-size: 1.5rem; }
-        }
+            .section-title {
+                font-size: 32px;
+            }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 40px 15px; }
-            .cta-button { padding: 12px 28px; font-size: 1rem; }
-        }
-
-        /* Smooth scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
+            .about-highlight {
+                font-size: 21px;
+            }
         }
     </style>
 </head>
+
 <body>
-    
-    <!-- Subtle floating particles -->
-    <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
-    <div class="particle" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
-    <div class="particle" style="top: 30%; left: 70%; animation-delay: 4s;"></div>
 
-    <div class="container">
-        
-        <!-- Header -->
-        <header>
-            <div class="profile-hex">
-                <div class="profile-inner">
-                    <img src="me.png" alt="Shuvo" class="profile-img">
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav>
+        <div class="container nav-inner">
+
+            <a href="#" class="logo">
+                MEHEDI HASAN SHUVO<span>.</span>
+            </a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="#about">About</a>
+                </li>
+
+                <li>
+                    <a href="#skills">Skills</a>
+                </li>
+
+                <li>
+                    <a href="#journey">Journey</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    Mehedi Hasan Shuvo · BBA Student · Business × Technology
                 </div>
+
+                <h1>
+                    Business<br>
+                    <span>meets Technology.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Final-year BBA student at Rajshahi College, exploring the
+                    intersection of business, technology, AI, networking and
+                    web development.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#contact" class="btn btn-primary">
+                        Let's Connect
+                    </a>
+
+                    <a href="#about" class="btn btn-outline">
+                        Explore My Journey
+                    </a>
+
+                </div>
+
             </div>
-            
-            <h1>Shuvo</h1>
-            <p class="tagline">
-                <span>Business mind</span> meets <span>Tech soul</span>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="about-grid">
+
+                <div>
+
+                    <div class="section-label">
+                        01 — About Me
+                    </div>
+
+                    <h2 class="section-title">
+                        More than just a business student.
+                    </h2>
+
+                    <p class="section-text">
+                        I'm someone who refuses to choose between the business
+                        world and the tech realm—I thrive in both.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <p class="about-highlight">
+
+                        By day, I analyze
+                        <span>market strategies</span>
+                        and business models.
+
+                        By night, I'm tinkering with
+                        <span>networks, web apps and AI.</span>
+
+                    </p>
+
+                    <p class="section-text" style="margin-top:25px;">
+
+                        This intersection is where magic happens.
+
+                    </p>
+
+                    <div class="quote">
+
+                        "The future belongs to those who can speak both
+                        <strong>business_logic</strong> and
+                        <strong>code_logic.</strong>"
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EDUCATION
+    ========================= -->
+
+    <section id="education">
+
+        <div class="container">
+
+            <div class="section-label">
+                02 — Education
+            </div>
+
+            <h2 class="section-title">
+                Where I'm learning.
+            </h2>
+
+            <p class="section-text">
+
+                Building a strong foundation in management while exploring
+                technology beyond the classroom.
+
             </p>
-            <div class="status-badge">Available for projects</div>
-        </header>
 
-        <!-- About Window -->
-        <div class="window" data-delay="0">
-            <div class="window-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="window-title">about.md</span>
+            <div class="education-card">
+
+                <h3>
+                    BBA (Final Year) — Management
+                </h3>
+
+                <p>
+                    Rajshahi College
+                </p>
+
             </div>
-            <div class="window-body">
-                <p class="prompt">cat about.md</p>
-                <h2><span class="icon">👤</span> Who I Am</h2>
-                <p>
-                    Final-year BBA student at Rajshahi College, but that's just the surface. I'm someone who refuses to choose between the business world and the tech realm—I thrive in both.
-                </p>
-                <p>
-                    By day, I'm analyzing market strategies and business models. By night, I'm tinkering with networks, building web apps, and diving into AI. This intersection is where magic happens.
-                </p>
-                <p>
-                    My belief? The future belongs to those who can speak both languages: <code>business_logic</code> and <code>code_logic</code>.
-                </p>
-            </div>
+
         </div>
 
-        <!-- Skills Window -->
-        <div class="window" data-delay="100">
-            <div class="window-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="window-title">skills.json</span>
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-label">
+                03 — Skills & Interests
             </div>
-            <div class="window-body">
-                <p class="prompt">cat skills.json</p>
-                <h2><span class="icon">⚡</span> What I Do</h2>
-                <ul class="code-list">
-                    <li>
-                        <span>
-                            <span class="label">academic:</span> BBA (Final Year) in Management at Rajshahi College—learning how businesses tick
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            <span class="label">tech:</span> Network configuration, web development, AI exploration, device customization—my digital playground
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            <span class="label">gaming:</span> Competitive strategy gaming—where I learned patience, focus, and thinking 10 moves ahead
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            <span class="label">mindset:</span> Strategic thinking, rapid learning, problem-solving under pressure
-                        </span>
-                    </li>
-                </ul>
+
+            <h2 class="section-title">
+                My digital playground.
+            </h2>
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+
+                    <div class="skill-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Network Configuration
+                    </h3>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-number">
+                        03
+                    </div>
+
+                    <h3>
+                        AI Exploration
+                    </h3>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <div class="skill-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Device Customization
+                    </h3>
+
+                </div>
+
             </div>
+
+
+            <div style="margin-top:50px;">
+
+                <p class="section-text">
+
+                    Gaming has also shaped the way I think—especially
+                    competitive strategy games, where patience, focus and
+                    planning several moves ahead matter.
+
+                </p>
+
+                <div class="mindset">
+
+                    <span class="tag">
+                        Strategic Thinking
+                    </span>
+
+                    <span class="tag">
+                        Rapid Learning
+                    </span>
+
+                    <span class="tag">
+                        Problem Solving
+                    </span>
+
+                    <span class="tag">
+                        Focus
+                    </span>
+
+                    <span class="tag">
+                        Decision Making
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <!-- Values Window -->
-        <div class="window" data-delay="200">
-            <div class="window-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="window-title">values.txt</span>
+    </section>
+
+
+    <!-- =========================
+         BEYOND THE SCREEN
+    ========================= -->
+
+    <section class="beyond" id="journey">
+
+        <div class="container">
+
+            <div class="section-label">
+                04 — Beyond The Screen
             </div>
-            <div class="window-body">
-                <p class="prompt">cat values.txt</p>
-                <h2><span class="icon">❤️</span> Beyond The Screen</h2>
-                <p>
-                    Tech is cool, business is exciting, but at the end of the day, it's about people and compassion.
-                </p>
-                <p>
-                    I care for street animals in my community—it keeps me grounded and reminds me that impact doesn't always need to be at scale. Sometimes it's just about showing up for those who need it.
-                </p>
-                <p>
-                    Empathy, community, and making things a little better wherever I can—that's the operating system I run on.
-                </p>
+
+            <h2 class="section-title">
+
+                Technology is cool.<br>
+                People matter more.
+
+            </h2>
+
+            <p class="section-text">
+
+                Tech is exciting and business is fascinating, but at the end
+                of the day, it's about people and compassion.
+
+            </p>
+
+            <div class="quote">
+
+                I care for street animals in my community. It keeps me grounded
+                and reminds me that impact doesn't always need to be at scale.
+                Sometimes, it's simply about showing up for those who need it.
+
             </div>
+
+            <p class="section-text" style="margin-top:30px;">
+
+                Empathy, community, and making things a little better wherever
+                I can—that's the operating system I run on.
+
+            </p>
+
         </div>
 
-        <!-- Dreams Window -->
-        <div class="window" data-delay="300">
-            <div class="window-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="window-title">dreams.sh</span>
+    </section>
+
+
+    <!-- =========================
+         WHAT'S NEXT
+    ========================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-label">
+                05 — What's Next
             </div>
-            <div class="window-body">
-                <p class="prompt">./dreams.sh --run</p>
-                <h2><span class="icon">🗺️</span> What's Next</h2>
+
+            <h2 class="section-title">
+
+                64 districts.<br>
+                One journey.
+
+            </h2>
+
+            <div class="goal-box">
+
+                <h3>
+                    Exploring Bangladesh
+                </h3>
+
                 <p>
-                    I want to explore every corner of Bangladesh—all 64 districts. Not as a tourist, but as someone who wants to understand the diverse cultures, landscapes, and stories of my own country.
+
+                    I want to explore every corner of Bangladesh—all 64
+                    districts. Not simply as a tourist, but as someone who
+                    wants to understand the diverse cultures, landscapes
+                    and stories of my own country.
+
                 </p>
-                <p>
-                    Every journey teaches something new. Every conversation broadens perspective. That's the kind of learning that can't be found in textbooks or terminals.
+
+                <p style="margin-top:18px;">
+
+                    Every journey teaches something new. Every conversation
+                    broadens perspective. That's the kind of learning that
+                    can't always be found in textbooks or terminals.
+
                 </p>
+
             </div>
+
         </div>
 
-        <!-- Contact Window -->
-        <div class="window" data-delay="400">
-            <div class="window-header">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-                <span class="window-title">contact.sh</span>
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section class="contact" id="contact">
+
+        <div class="container">
+
+            <div class="section-label">
+                06 — Let's Connect
             </div>
-            <div class="window-body">
-                <p class="prompt">./contact.sh --init</p>
-                <h2><span class="icon">📬</span> Let's Connect</h2>
-                <p>
-                    Got a project idea? Want to talk about the intersection of business and tech? Or just want to chat about AI, networks, or strategy games?
-                </p>
-                <p>
-                    I'm always down for good conversations and cool collaborations.
-                </p>
-                <a href="mailto:mail@shuvo.bro.bd" class="cta-button">
-                    <span>→</span> Drop me a message
+
+            <h2 class="section-title">
+
+                Got something interesting in mind?
+
+            </h2>
+
+            <p class="section-text">
+
+                Want to talk about business, technology, AI, networks,
+                strategy games—or just have a good conversation?
+                I'm always open.
+
+            </p>
+
+            <div class="contact-buttons">
+
+                <a
+                    href="mailto:mail@shuvo.bro.bd"
+                    class="btn btn-primary"
+                >
+                    Email Me
                 </a>
+
+                <a
+                    href="https://www.facebook.com/modelxn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline"
+                >
+                    Facebook
+                </a>
+
             </div>
+
         </div>
 
-        <!-- Footer -->
-        <footer>
-            <p>
-                Built with purpose. Standing for justice & Palestine 🇵🇸
-            </p>
-        </footer>
-    </div>
+    </section>
 
-    <script>
-        // Intersection Observer for smooth reveal
-        const windows = document.querySelectorAll('.window');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const delay = entry.target.dataset.delay || 0;
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, delay);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.2
-        });
 
-        windows.forEach(window => observer.observe(window));
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
-        // Generate more particles dynamically
-        function createParticles() {
-            const particleCount = 5;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                document.body.appendChild(particle);
-            }
-        }
+    <footer>
 
-        createParticles();
-    </script>
+        <div class="container">
+
+            © 2026 Mehedi Hasan Shuvo. Built with curiosity.
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
