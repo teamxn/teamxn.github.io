@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mehedi Hasan Shuvo | Business × Technology</title>
+    <title>Mehedi Hasan Shuvo — Business × Technology</title>
 
     <meta name="description"
-        content="Mehedi Hasan Shuvo — Final-year BBA student at Rajshahi College exploring business, technology, AI, networking and web development.">
+        content="Mehedi Hasan Shuvo — Final-year BBA student exploring the intersection of business, technology, AI, networking and web development.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
+        :root {
+            --bg: #050505;
+            --bg-soft: #0b0b0f;
+            --card: rgba(255, 255, 255, 0.045);
+            --border: rgba(255, 255, 255, 0.10);
+            --text: #f5f5f7;
+            --muted: #94949f;
+            --purple: #8b5cf6;
+            --cyan: #22d3ee;
+            --green: #34d399;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -28,19 +42,72 @@
 
         body {
             font-family: "Inter", sans-serif;
-            background: #0a0a0a;
-            color: #f5f5f5;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
             line-height: 1.7;
         }
 
+        body::selection {
+            background: var(--purple);
+            color: white;
+        }
+
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
         .container {
-            width: min(1100px, 90%);
+            width: min(1150px, 90%);
             margin: auto;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background-grid {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -3;
+
+            background-image:
+                linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+
+            background-size: 55px 55px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black 0%,
+                rgba(0,0,0,.7) 50%,
+                transparent 100%
+            );
+        }
+
+        .glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: .13;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .glow.one {
+            background: var(--purple);
+            top: -200px;
+            left: -150px;
+        }
+
+        .glow.two {
+            background: var(--cyan);
+            top: 45%;
+            right: -200px;
         }
 
         /* =========================
@@ -50,48 +117,61 @@
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
+            z-index: 999;
 
-            background: rgba(10, 10, 10, 0.78);
-            backdrop-filter: blur(14px);
+            background: rgba(5,5,5,.55);
+            backdrop-filter: blur(20px);
 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            border-bottom: 1px solid rgba(255,255,255,.06);
         }
 
-        .nav-inner {
-            height: 72px;
-
+        .nav {
+            height: 74px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
+            font-family: "Space Grotesk", sans-serif;
             font-size: 20px;
-            font-weight: 800;
+            font-weight: 700;
             letter-spacing: -1px;
         }
 
-        .logo span {
-            color: #8b5cf6;
+        .logo .dot {
+            color: var(--purple);
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            align-items: center;
+            gap: 30px;
             list-style: none;
         }
 
         .nav-links a {
-            font-size: 14px;
-            color: #bdbdbd;
-
-            transition: 0.3s;
+            font-size: 13px;
+            color: #aaaab4;
+            transition: .25s ease;
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: white;
+        }
+
+        .nav-contact {
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: .25s ease;
+        }
+
+        .nav-contact:hover {
+            background: white;
+            color: black !important;
         }
 
         /* =========================
@@ -100,160 +180,220 @@
 
         .hero {
             min-height: 100vh;
-
             display: flex;
             align-items: center;
-
-            padding-top: 80px;
-
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-
-            position: absolute;
-
-            width: 500px;
-            height: 500px;
-
-            background: #5b21b6;
-            filter: blur(180px);
-
-            opacity: 0.18;
-
-            right: -150px;
-            top: 100px;
+            padding-top: 100px;
         }
 
         .hero-content {
-            position: relative;
-            max-width: 850px;
+            max-width: 900px;
         }
 
-        .eyebrow {
-            color: #9ca3af;
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
 
-            font-size: 14px;
-            font-weight: 600;
+            padding: 7px 12px;
 
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            border: 1px solid rgba(52,211,153,.2);
+            background: rgba(52,211,153,.05);
 
-            margin-bottom: 18px;
-        }
+            border-radius: 50px;
 
-        .hero h1 {
-            font-size: clamp(48px, 8vw, 90px);
-
-            line-height: 1;
-            letter-spacing: -5px;
+            font-size: 12px;
+            color: #a7f3d0;
 
             margin-bottom: 25px;
         }
 
-        .hero h1 span {
-            background: linear-gradient(
-                90deg,
-                #ffffff,
-                #8b5cf6
-            );
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+
+            box-shadow: 0 0 12px var(--green);
+
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .35;
+            }
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(52px, 8vw, 108px);
+
+            line-height: .94;
+            letter-spacing: -6px;
+
+            margin-bottom: 30px;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff 15%,
+                    #a78bfa 48%,
+                    #22d3ee 85%
+                );
 
             -webkit-background-clip: text;
+            background-clip: text;
+
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-text {
-            max-width: 720px;
+        .hero-description {
+            max-width: 700px;
+
+            color: var(--muted);
 
             font-size: 18px;
 
-            color: #a3a3a3;
-
-            margin-bottom: 32px;
+            margin-bottom: 35px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 14px;
             flex-wrap: wrap;
+            gap: 12px;
         }
 
-        /* =========================
-           BUTTONS
-        ========================= */
-
         .btn {
-            padding: 13px 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
 
-            border-radius: 8px;
+            padding: 13px 19px;
 
-            font-weight: 600;
+            border-radius: 10px;
+
             font-size: 14px;
+            font-weight: 600;
 
-            display: inline-block;
-
-            transition: 0.3s;
+            transition: .3s ease;
         }
 
         .btn-primary {
-            background: #ffffff;
-            color: #000000;
+            background: white;
+            color: black;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            background: #e5e5e5;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(255,255,255,.12);
         }
 
-        .btn-outline {
-            border: 1px solid #333333;
-            color: #dddddd;
+        .btn-secondary {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.025);
         }
 
-        .btn-outline:hover {
-            border-color: #666666;
-            background: #151515;
+        .btn-secondary:hover {
+            background: rgba(255,255,255,.08);
+            transform: translateY(-3px);
         }
 
         /* =========================
-           SECTIONS
+           HERO SIDE INFO
+        ========================= */
+
+        .hero-mini-card {
+            position: absolute;
+            right: 2%;
+            bottom: 15%;
+
+            width: 230px;
+
+            padding: 20px;
+
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.045);
+
+            backdrop-filter: blur(16px);
+
+            border-radius: 16px;
+
+            transform: rotate(3deg);
+
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0) rotate(3deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(3deg);
+            }
+        }
+
+        .mini-label {
+            font-size: 11px;
+            color: #777782;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .mini-title {
+            font-family: "Space Grotesk", sans-serif;
+            margin-top: 7px;
+            font-size: 20px;
+        }
+
+        .mini-code {
+            margin-top: 14px;
+            color: #8b5cf6;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        /* =========================
+           SECTION
         ========================= */
 
         section {
-            padding: 110px 0;
-
-            border-top: 1px solid #171717;
+            padding: 120px 0;
+            border-top: 1px solid rgba(255,255,255,.055);
         }
 
-        .section-label {
-            color: #8b5cf6;
+        .section-top {
+            margin-bottom: 50px;
+        }
 
-            font-size: 13px;
-            font-weight: 700;
-
-            letter-spacing: 2px;
-            text-transform: uppercase;
-
-            margin-bottom: 10px;
+        .section-number {
+            color: var(--purple);
+            font-family: monospace;
+            font-size: 12px;
+            margin-bottom: 8px;
         }
 
         .section-title {
-            font-size: 38px;
+            font-family: "Space Grotesk", sans-serif;
 
-            line-height: 1.15;
-            letter-spacing: -2px;
+            font-size: clamp(34px, 5vw, 55px);
 
-            margin-bottom: 25px;
+            line-height: 1.05;
+            letter-spacing: -2.5px;
         }
 
-        .section-text {
-            max-width: 800px;
-
-            color: #a1a1a1;
-
-            font-size: 17px;
+        .section-subtitle {
+            color: var(--muted);
+            max-width: 700px;
+            margin-top: 15px;
         }
 
         /* =========================
@@ -262,52 +402,73 @@
 
         .about-grid {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 70px;
-
-            align-items: start;
         }
 
-        .about-highlight {
-            font-size: 24px;
+        .about-big {
+            font-family: "Space Grotesk", sans-serif;
 
-            line-height: 1.5;
+            font-size: 28px;
 
-            font-weight: 600;
+            line-height: 1.45;
 
-            color: #dddddd;
+            color: #dadbe2;
         }
 
-        .about-highlight span {
-            color: #8b5cf6;
+        .about-big span {
+            color: var(--purple);
         }
 
-        /* =========================
-           EDUCATION
-        ========================= */
+        .about-text {
+            color: var(--muted);
+            font-size: 16px;
+        }
 
-        .education-card {
-            margin-top: 35px;
+        .terminal {
+            margin-top: 30px;
 
-            padding: 28px;
-
-            background: #111111;
-
-            border: 1px solid #1f1f1f;
+            border: 1px solid var(--border);
 
             border-radius: 14px;
+
+            background: rgba(255,255,255,.035);
+
+            overflow: hidden;
         }
 
-        .education-card h3 {
-            font-size: 21px;
+        .terminal-bar {
+            display: flex;
+            gap: 7px;
 
-            margin-bottom: 6px;
+            padding: 12px 14px;
+
+            border-bottom: 1px solid var(--border);
         }
 
-        .education-card p {
-            color: #999999;
+        .terminal-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #444;
+        }
+
+        .terminal-body {
+            padding: 18px;
+
+            font-family: monospace;
+
+            font-size: 12px;
+
+            color: #999;
+        }
+
+        .terminal-body .purple {
+            color: var(--purple);
+        }
+
+        .terminal-body .cyan {
+            color: var(--cyan);
         }
 
         /* =========================
@@ -315,149 +476,279 @@
         ========================= */
 
         .skills-grid {
-            margin-top: 40px;
-
             display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
+            grid-template-columns: repeat(2,1fr);
             gap: 16px;
         }
 
-        .skill-card {
-            padding: 24px;
+        .skill {
+            position: relative;
 
-            background: #101010;
+            padding: 30px;
 
-            border: 1px solid #1e1e1e;
+            border: 1px solid var(--border);
 
-            border-radius: 12px;
+            border-radius: 18px;
 
-            transition: 0.3s;
+            background: var(--card);
+
+            overflow: hidden;
+
+            transition: .35s ease;
         }
 
-        .skill-card:hover {
-            transform: translateY(-4px);
+        .skill::after {
+            content: "";
 
-            border-color: #444444;
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -70px;
+            bottom: -90px;
+
+            background: var(--purple);
+
+            filter: blur(80px);
+
+            opacity: 0;
+
+            transition: .4s ease;
         }
 
-        .skill-number {
-            color: #666666;
-
-            font-size: 13px;
-
-            margin-bottom: 10px;
+        .skill:hover {
+            transform: translateY(-7px);
+            border-color: rgba(139,92,246,.4);
         }
 
-        .skill-card h3 {
-            font-size: 19px;
+        .skill:hover::after {
+            opacity: .25;
+        }
+
+        .skill-index {
+            color: #555;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .skill h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 23px;
+            margin: 22px 0 8px;
+        }
+
+        .skill p {
+            color: var(--muted);
+            font-size: 14px;
         }
 
         /* =========================
            MINDSET
         ========================= */
 
-        .mindset {
-            margin-top: 35px;
-
+        .tags {
             display: flex;
-
             flex-wrap: wrap;
-
             gap: 10px;
+            margin-top: 30px;
         }
 
         .tag {
-            padding: 10px 15px;
+            padding: 9px 13px;
 
-            border: 1px solid #292929;
+            border: 1px solid var(--border);
 
-            border-radius: 50px;
+            background: rgba(255,255,255,.03);
 
-            color: #cfcfcf;
+            border-radius: 100px;
 
-            background: #111111;
+            font-size: 13px;
 
-            font-size: 14px;
+            color: #c9cad2;
         }
 
         /* =========================
-           BEYOND THE SCREEN
+           EDUCATION
         ========================= */
 
-        .beyond {
-            background: #0d0d0d;
+        .timeline {
+            position: relative;
+
+            border-left: 1px solid #292929;
+
+            margin-left: 8px;
         }
 
-        .quote {
-            margin-top: 35px;
+        .timeline-item {
+            position: relative;
+            padding: 5px 0 50px 35px;
+        }
 
-            padding: 30px;
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
 
-            border-left: 3px solid #8b5cf6;
+        .timeline-item::before {
+            content: "";
 
-            background: #111111;
+            position: absolute;
 
-            color: #c9c9c9;
+            left: -5px;
+            top: 10px;
 
-            font-size: 20px;
+            width: 9px;
+            height: 9px;
+
+            background: var(--purple);
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 15px rgba(139,92,246,.7);
+        }
+
+        .timeline-date {
+            color: var(--purple);
+
+            font-size: 12px;
+
+            font-family: monospace;
+
+            margin-bottom: 5px;
+        }
+
+        .timeline h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 22px;
+        }
+
+        .timeline p {
+            color: var(--muted);
+            margin-top: 6px;
         }
 
         /* =========================
-           GOAL
+           BEYOND SCREEN
         ========================= */
 
-        .goal-box {
-            margin-top: 35px;
+        .beyond-box {
+            padding: 55px;
 
-            padding: 35px;
+            border: 1px solid var(--border);
 
-            border: 1px solid #242424;
+            border-radius: 24px;
 
-            border-radius: 16px;
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(34,211,238,.08),
+                    transparent 30%
+                ),
+                rgba(255,255,255,.025);
+        }
+
+        .beyond-box h3 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: 38px;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 20px;
+        }
+
+        .beyond-box p {
+            max-width: 750px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+        }
+
+        /* =========================
+           BANGLADESH
+        ========================= */
+
+        .journey-number {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(90px, 18vw, 230px);
+
+            font-weight: 700;
+
+            line-height: .8;
+
+            letter-spacing: -10px;
 
             background:
                 linear-gradient(
-                    135deg,
-                    #111111,
-                    #0c0c0c
+                    90deg,
+                    #fff,
+                    #8b5cf6,
+                    #22d3ee
                 );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            margin: 30px 0;
         }
 
-        .goal-box h3 {
-            font-size: 25px;
+        .journey-text {
+            max-width: 750px;
 
-            margin-bottom: 12px;
-        }
+            color: var(--muted);
 
-        .goal-box p {
-            color: #a3a3a3;
+            font-size: 17px;
         }
 
         /* =========================
            CONTACT
         ========================= */
 
-        .contact {
+        .contact-wrap {
             text-align: center;
-
-            padding-bottom: 80px;
-        }
-
-        .contact .section-text {
+            max-width: 850px;
             margin: auto;
         }
 
-        .contact-buttons {
-            margin-top: 30px;
+        .contact-wrap .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
+        .contact-email {
+            display: inline-block;
+
+            margin: 35px 0;
+
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(24px,5vw,50px);
+
+            letter-spacing: -2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #a78bfa
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            transition: .3s;
+        }
+
+        .contact-email:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-buttons {
             display: flex;
-
             justify-content: center;
-
             gap: 12px;
-
             flex-wrap: wrap;
         }
 
@@ -466,55 +757,97 @@
         ========================= */
 
         footer {
-            border-top: 1px solid #171717;
+            padding: 30px 0;
 
-            padding: 25px 0;
+            border-top: 1px solid rgba(255,255,255,.06);
 
-            color: #666666;
+            color: #666;
 
             text-align: center;
 
-            font-size: 13px;
+            font-size: 12px;
+        }
+
+        footer span {
+            color: #aaa;
+        }
+
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* =========================
            MOBILE
         ========================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 850px) {
 
             .nav-links {
                 display: none;
             }
 
-            .hero h1 {
-                letter-spacing: -3px;
-            }
-
-            .hero-text {
-                font-size: 16px;
-            }
-
-            section {
-                padding: 80px 0;
+            .hero-mini-card {
+                display: none;
             }
 
             .about-grid {
                 grid-template-columns: 1fr;
-
-                gap: 30px;
+                gap: 35px;
             }
 
             .skills-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 32px;
+            .beyond-box {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 58px;
+                letter-spacing: -4px;
             }
 
-            .about-highlight {
-                font-size: 21px;
+            .hero-description {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 85px 0;
+            }
+
+            .about-big {
+                font-size: 23px;
+            }
+
+            .journey-number {
+                letter-spacing: -6px;
+            }
+
+            .beyond-box h3 {
+                font-size: 30px;
+            }
+
+            .contact-email {
+                font-size: 25px;
+                letter-spacing: -1px;
             }
         }
     </style>
@@ -522,18 +855,25 @@
 
 <body>
 
+    <!-- Background -->
+    <div class="background-grid"></div>
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+
     <!-- =========================
-         NAVBAR
+         NAVIGATION
     ========================= -->
 
     <nav>
-        <div class="container nav-inner">
+        <div class="container nav">
 
             <a href="#" class="logo">
-                SHUVO<span>.</span>
+                MEHEDI Hasan SHUVO<span class="dot">.</span>
             </a>
 
             <ul class="nav-links">
+
                 <li>
                     <a href="#about">About</a>
                 </li>
@@ -543,12 +883,19 @@
                 </li>
 
                 <li>
+                    <a href="#education">Education</a>
+                </li>
+
+                <li>
                     <a href="#journey">Journey</a>
                 </li>
 
                 <li>
-                    <a href="#contact">Contact</a>
+                    <a href="#contact" class="nav-contact">
+                        Let's Talk
+                    </a>
                 </li>
+
             </ul>
 
         </div>
@@ -563,33 +910,68 @@
 
         <div class="container">
 
-            <div class="hero-content">
+            <div class="hero-content reveal">
 
-                <div class="eyebrow">
-                    Mehedi Hasan Shuvo · BBA Student · Business × Technology
+                <div class="availability">
+
+                    <span class="status-dot"></span>
+
+                    Exploring • Learning • Building
+
                 </div>
 
+
                 <h1>
-                    Business<br>
-                    <span>meets Technology.</span>
+
+                    Business
+                    <br>
+
+                    <span class="gradient-text">
+                        meets Technology.
+                    </span>
+
                 </h1>
 
-                <p class="hero-text">
-                    Final-year BBA student at Rajshahi College, exploring the
-                    intersection of business, technology, AI, networking and
-                    web development.
+
+                <p class="hero-description">
+
+                    I'm <strong>Mehedi Hasan Shuvo</strong> —
+                    a final-year BBA student at Rajshahi College,
+                    exploring the space where business strategy,
+                    technology, AI and problem-solving come together.
+
                 </p>
+
 
                 <div class="hero-buttons">
 
-                    <a href="#contact" class="btn btn-primary">
+                    <a href="#about" class="btn btn-primary">
+                        Explore My World →
+                    </a>
+
+                    <a href="#contact" class="btn btn-secondary">
                         Let's Connect
                     </a>
 
-                    <a href="#about" class="btn btn-outline">
-                        Explore My Journey
-                    </a>
+                </div>
 
+            </div>
+
+
+            <!-- Floating card -->
+
+            <div class="hero-mini-card">
+
+                <div class="mini-label">
+                    Current Status
+                </div>
+
+                <div class="mini-title">
+                    BBA · Management
+                </div>
+
+                <div class="mini-code">
+                    business_logic × code_logic
                 </div>
 
             </div>
@@ -607,52 +989,234 @@
 
         <div class="container">
 
+            <div class="section-top reveal">
+
+                <div class="section-number">
+                    01 / ABOUT
+                </div>
+
+                <h2 class="section-title">
+                    More than just a business student.
+                </h2>
+
+                <p class="section-subtitle">
+                    I don't believe in choosing between business and technology.
+                    I'm interested in understanding both.
+                </p>
+
+            </div>
+
+
             <div class="about-grid">
 
-                <div>
+                <div class="reveal">
 
-                    <div class="section-label">
-                        01 — About Me
-                    </div>
+                    <p class="about-big">
 
-                    <h2 class="section-title">
-                        More than just a business student.
-                    </h2>
+                        By day, I'm analyzing
+                        <span>market strategies</span>
+                        and business models.
 
-                    <p class="section-text">
-                        I'm someone who refuses to choose between the business
-                        world and the tech realm—I thrive in both.
+                        By night, I'm exploring
+                        <span>networks, web development and AI.</span>
+
                     </p>
 
                 </div>
 
 
-                <div>
+                <div class="reveal">
 
-                    <p class="about-highlight">
+                    <p class="about-text">
 
-                        By day, I analyze
-                        <span>market strategies</span>
-                        and business models.
+                        This intersection is where I learn the most.
+                        Business teaches me how organizations create value.
+                        Technology teaches me how ideas can become systems.
 
-                        By night, I'm tinkering with
-                        <span>networks, web apps and AI.</span>
+                        <br><br>
 
-                    </p>
-
-                    <p class="section-text" style="margin-top:25px;">
-
-                        This intersection is where magic happens.
+                        My goal is to understand both sides and connect them.
 
                     </p>
 
-                    <div class="quote">
 
-                        "The future belongs to those who can speak both
-                        <strong>business_logic</strong> and
-                        <strong>code_logic.</strong>"
+                    <div class="terminal">
+
+                        <div class="terminal-bar">
+
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+
+                        </div>
+
+                        <div class="terminal-body">
+
+                            <div>
+                                <span class="purple">const</span>
+                                mindset =
+                                <span class="cyan">"keep learning";</span>
+                            </div>
+
+                            <br>
+
+                            <div>
+                                business_logic +
+                                code_logic
+                            </div>
+
+                            <br>
+
+                            <div>
+                                <span class="purple">return</span>
+                                curiosity;
+                            </div>
+
+                        </div>
 
                     </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-top reveal">
+
+                <div class="section-number">
+                    02 / SKILLS
+                </div>
+
+                <h2 class="section-title">
+                    My digital playground.
+                </h2>
+
+                <p class="section-subtitle">
+                    Areas I enjoy exploring, experimenting with and learning.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <div class="skill reveal">
+
+                    <div class="skill-index">
+                        01 — NETWORKING
+                    </div>
+
+                    <h3>
+                        Network Configuration
+                    </h3>
+
+                    <p>
+                        Exploring network setup, configuration,
+                        troubleshooting and infrastructure.
+                    </p>
+
+                </div>
+
+
+                <div class="skill reveal">
+
+                    <div class="skill-index">
+                        02 — DEVELOPMENT
+                    </div>
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                    <p>
+                        Building websites and experimenting with
+                        front-end technologies and web systems.
+                    </p>
+
+                </div>
+
+
+                <div class="skill reveal">
+
+                    <div class="skill-index">
+                        03 — AI
+                    </div>
+
+                    <h3>
+                        AI Exploration
+                    </h3>
+
+                    <p>
+                        Exploring artificial intelligence,
+                        AI tools, ideas and emerging technologies.
+                    </p>
+
+                </div>
+
+
+                <div class="skill reveal">
+
+                    <div class="skill-index">
+                        04 — HARDWARE
+                    </div>
+
+                    <h3>
+                        Device Customization
+                    </h3>
+
+                    <p>
+                        Curious about devices, configurations,
+                        optimization and customization.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="reveal" style="margin-top:60px;">
+
+                <div class="section-number">
+                    MINDSET
+                </div>
+
+                <div class="tags">
+
+                    <span class="tag">
+                        Strategic Thinking
+                    </span>
+
+                    <span class="tag">
+                        Rapid Learning
+                    </span>
+
+                    <span class="tag">
+                        Problem Solving
+                    </span>
+
+                    <span class="tag">
+                        Decision Making
+                    </span>
+
+                    <span class="tag">
+                        Focus
+                    </span>
+
+                    <span class="tag">
+                        Curiosity
+                    </span>
 
                 </div>
 
@@ -671,141 +1235,77 @@
 
         <div class="container">
 
-            <div class="section-label">
-                02 — Education
-            </div>
+            <div class="section-top reveal">
 
-            <h2 class="section-title">
-                Where I'm learning.
-            </h2>
+                <div class="section-number">
+                    03 / EDUCATION
+                </div>
 
-            <p class="section-text">
+                <h2 class="section-title">
+                    Where it started.
+                </h2>
 
-                Building a strong foundation in management while exploring
-                technology beyond the classroom.
-
-            </p>
-
-            <div class="education-card">
-
-                <h3>
-                    BBA (Final Year) — Management
-                </h3>
-
-                <p>
-                    Rajshahi College
+                <p class="section-subtitle">
+                    Building a foundation in business while learning beyond
+                    the boundaries of the classroom.
                 </p>
 
             </div>
 
-        </div>
 
-    </section>
+            <div class="timeline">
 
+                <div class="timeline-item reveal">
 
-    <!-- =========================
-         SKILLS
-    ========================= -->
-
-    <section id="skills">
-
-        <div class="container">
-
-            <div class="section-label">
-                03 — Skills & Interests
-            </div>
-
-            <h2 class="section-title">
-                My digital playground.
-            </h2>
-
-            <div class="skills-grid">
-
-                <div class="skill-card">
-
-                    <div class="skill-number">
-                        01
+                    <div class="timeline-date">
+                        CURRENT
                     </div>
 
                     <h3>
-                        Network Configuration
+                        BBA — Management
                     </h3>
+
+                    <p>
+                        Rajshahi College
+                        <br>
+                        Final Year
+                    </p>
 
                 </div>
 
 
-                <div class="skill-card">
+                <div class="timeline-item reveal">
 
-                    <div class="skill-number">
-                        02
+                    <div class="timeline-date">
+                        BEYOND CLASSROOM
                     </div>
 
                     <h3>
-                        Web Development
+                        Technology Exploration
                     </h3>
 
-                </div>
-
-
-                <div class="skill-card">
-
-                    <div class="skill-number">
-                        03
-                    </div>
-
-                    <h3>
-                        AI Exploration
-                    </h3>
-
-                </div>
-
-
-                <div class="skill-card">
-
-                    <div class="skill-number">
-                        04
-                    </div>
-
-                    <h3>
+                    <p>
+                        Networking · Web Development · AI ·
                         Device Customization
-                    </h3>
+                    </p>
 
                 </div>
 
-            </div>
 
+                <div class="timeline-item reveal">
 
-            <div style="margin-top:50px;">
+                    <div class="timeline-date">
+                        PERSONAL DEVELOPMENT
+                    </div>
 
-                <p class="section-text">
+                    <h3>
+                        Strategy & Problem Solving
+                    </h3>
 
-                    Gaming has also shaped the way I think—especially
-                    competitive strategy games, where patience, focus and
-                    planning several moves ahead matter.
-
-                </p>
-
-                <div class="mindset">
-
-                    <span class="tag">
-                        Strategic Thinking
-                    </span>
-
-                    <span class="tag">
-                        Rapid Learning
-                    </span>
-
-                    <span class="tag">
-                        Problem Solving
-                    </span>
-
-                    <span class="tag">
-                        Focus
-                    </span>
-
-                    <span class="tag">
-                        Decision Making
-                    </span>
+                    <p>
+                        Competitive strategy gaming has strengthened
+                        patience, focus and thinking several moves ahead.
+                    </p>
 
                 </div>
 
@@ -820,42 +1320,45 @@
          BEYOND THE SCREEN
     ========================= -->
 
-    <section class="beyond" id="journey">
+    <section>
 
         <div class="container">
 
-            <div class="section-label">
-                04 — Beyond The Screen
+            <div class="beyond-box reveal">
+
+                <div class="section-number">
+                    04 / BEYOND THE SCREEN
+                </div>
+
+                <h3>
+                    Technology is cool.
+                    <br>
+                    People matter more. ❤️
+                </h3>
+
+                <p>
+
+                    Tech is exciting and business is fascinating,
+                    but at the end of the day, it's about people
+                    and compassion.
+
+                    <br><br>
+
+                    I care for street animals in my community.
+                    It keeps me grounded and reminds me that impact
+                    doesn't always need to be at scale.
+
+                    Sometimes, it's simply about showing up
+                    for those who need it.
+
+                    <br><br>
+
+                    Empathy, community and making things a little better
+                    wherever I can — that's the operating system I run on.
+
+                </p>
+
             </div>
-
-            <h2 class="section-title">
-
-                Technology is cool.<br>
-                People matter more.
-
-            </h2>
-
-            <p class="section-text">
-
-                Tech is exciting and business is fascinating, but at the end
-                of the day, it's about people and compassion.
-
-            </p>
-
-            <div class="quote">
-
-                I care for street animals in my community. It keeps me grounded
-                and reminds me that impact doesn't always need to be at scale.
-                Sometimes, it's simply about showing up for those who need it.
-
-            </div>
-
-            <p class="section-text" style="margin-top:30px;">
-
-                Empathy, community, and making things a little better wherever
-                I can—that's the operating system I run on.
-
-            </p>
 
         </div>
 
@@ -863,48 +1366,42 @@
 
 
     <!-- =========================
-         WHAT'S NEXT
+         BANGLADESH JOURNEY
     ========================= -->
 
-    <section>
+    <section id="journey">
 
         <div class="container">
 
-            <div class="section-label">
-                05 — What's Next
+            <div class="section-number reveal">
+                05 / WHAT'S NEXT
             </div>
 
-            <h2 class="section-title">
-
-                64 districts.<br>
-                One journey.
-
+            <h2 class="section-title reveal">
+                One country.
+                <br>
+                Countless stories.
             </h2>
 
-            <div class="goal-box">
 
-                <h3>
-                    Exploring Bangladesh
-                </h3>
-
-                <p>
-
-                    I want to explore every corner of Bangladesh—all 64
-                    districts. Not simply as a tourist, but as someone who
-                    wants to understand the diverse cultures, landscapes
-                    and stories of my own country.
-
-                </p>
-
-                <p style="margin-top:18px;">
-
-                    Every journey teaches something new. Every conversation
-                    broadens perspective. That's the kind of learning that
-                    can't always be found in textbooks or terminals.
-
-                </p>
-
+            <div class="journey-number reveal">
+                64
             </div>
+
+
+            <p class="journey-text reveal">
+
+                I want to explore all 64 districts of Bangladesh —
+                not simply as a tourist, but as someone who wants to
+                understand the cultures, landscapes, people and stories
+                that make my country unique.
+
+                <br><br>
+
+                Every journey teaches something new.
+                Every conversation changes perspective.
+
+            </p>
 
         </div>
 
@@ -915,45 +1412,60 @@
          CONTACT
     ========================= -->
 
-    <section class="contact" id="contact">
+    <section id="contact">
 
         <div class="container">
 
-            <div class="section-label">
-                06 — Let's Connect
-            </div>
+            <div class="contact-wrap">
 
-            <h2 class="section-title">
+                <div class="section-number reveal">
+                    06 / LET'S CONNECT
+                </div>
 
-                Got something interesting in mind?
+                <h2 class="section-title reveal">
+                    Have an idea?
+                    <br>
+                    Let's talk.
+                </h2>
 
-            </h2>
+                <p class="section-subtitle reveal">
 
-            <p class="section-text">
+                    Got a project idea?
+                    Want to talk about business, technology,
+                    AI, networks or strategy?
 
-                Want to talk about business, technology, AI, networks,
-                strategy games—or just have a good conversation?
-                I'm always open.
+                    I'm always open to a good conversation.
 
-            </p>
+                </p>
 
-            <div class="contact-buttons">
 
                 <a
                     href="mailto:mail@shuvo.bro.bd"
-                    class="btn btn-primary"
+                    class="contact-email reveal"
                 >
-                    Email Me
+                    mail@shuvo.bro.bd
                 </a>
 
-                <a
-                    href="https://www.facebook.com/modelxn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-outline"
-                >
-                    Facebook
-                </a>
+
+                <div class="social-buttons reveal">
+
+                    <a
+                        href="https://www.facebook.com/modelxn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-secondary"
+                    >
+                        Facebook ↗
+                    </a>
+
+                    <a
+                        href="mailto:mail@shuvo.bro.bd"
+                        class="btn btn-primary"
+                    >
+                        Send an Email →
+                    </a>
+
+                </div>
 
             </div>
 
@@ -970,11 +1482,81 @@
 
         <div class="container">
 
-            © 2026 Mehedi Hasan Shuvo. Built with curiosity.
+            © 2026
+            <span>Mehedi Hasan Shuvo</span>
+            · Business × Technology
 
         </div>
 
     </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /*
+            Scroll Reveal Animation
+        */
+
+        const reveals = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("active");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        reveals.forEach((element) => {
+            revealObserver.observe(element);
+        });
+
+
+        /*
+            Slight mouse movement effect
+            for the background glow.
+        */
+
+        document.addEventListener("mousemove", (event) => {
+
+            const x = event.clientX;
+            const y = event.clientY;
+
+            const glowOne = document.querySelector(".glow.one");
+            const glowTwo = document.querySelector(".glow.two");
+
+            glowOne.style.transform =
+                `translate(${x * 0.015}px, ${y * 0.01}px)`;
+
+            glowTwo.style.transform =
+                `translate(${-x * 0.01}px, ${-y * 0.015}px)`;
+
+        });
+
+
+        /*
+            Current year automatically updates
+        */
+
+        const footer = document.querySelector("footer span");
+
+    </script>
 
 </body>
 </html>
